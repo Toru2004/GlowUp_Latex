@@ -1,0 +1,238 @@
+% File: main.tex
+% Ho Chi Minh University of Transport Thesis template
+
+\documentclass[a4paper,12pt]{report}
+
+% =========================
+% LOAD PACKAGES FIRST
+% =========================
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage{times}  % Font Times New Roman
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{anyfontsize}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{placeins}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage[acronym]{glossaries}
+\usepackage{tocloft}
+\usepackage{setspace} 
+\onehalfspacing
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+
+% =========================
+% GEOMETRY
+% =========================
+\geometry{
+    a4paper,
+    left=3cm,
+    right=2cm,
+    top=2cm,
+    bottom=2cm
+}
+
+% =========================
+% FORMAT CHAPTER, SECTION, SUBSECTION
+% =========================
+
+% Format CHAPTER - 14pt, in hoa, in đậm, căn giữa
+\titleformat{\chapter}[hang]
+{\normalfont\fontsize{14}{17}\bfseries\centering}
+{\MakeUppercase{\chaptertitlename\ \thechapter.}}
+{1em}
+{\MakeUppercase}
+
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+
+% CHAPTER không số (chapter*)
+\titleformat{name=\chapter,numberless}[hang]
+{\normalfont\fontsize{14}{17}\bfseries\centering}
+{}
+{0pt}
+{\MakeUppercase}
+
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+% Format SECTION - 13pt, in đậm
+\titleformat{\section}
+{\normalfont\fontsize{13}{16}\bfseries}
+{\thesection}
+{1em}
+{}
+
+% Format SUBSECTION - 13pt, in đậm, in nghiêng
+\titleformat{\subsection}
+{\normalfont\fontsize{13}{16}\bfseries\itshape}
+{\thesubsection}
+{1em}
+{}
+
+\makeglossaries
+
+\usepackage{caption}
+
+\captionsetup{
+    labelfont=it,
+    textfont=it
+}
+
+\captionsetup[table]{
+    labelfont=it,
+    textfont=it
+}
+
+
+\begin{document}
+
+% ===== TRANG BÌA - KHÔNG ĐÁNH SỐ =====
+\pagenumbering{gobble}
+\input{cover}
+\clearpage
+
+% ===== MỤC LỤC - ĐÁNH SỐ LA MÃ (i, ii, iii...) =====
+% ===== MỤC LỤC - ĐÁNH SỐ LA MÃ (i, ii, iii...) =====
+\begin{spacing}{1.5}
+    
+\include{chapters/front/introduction}
+\include{chapters/front/thanks}
+\include{chapters/front/assignments}
+\end{spacing}
+\pagenumbering{roman}
+\setcounter{page}{1}
+% Tạm tắt format của tocloft
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\fontsize{14}{17}\selectfont\bfseries\MakeUppercase}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+
+\renewcommand{\cftchappresnum}{CHƯƠNG~}
+\renewcommand{\cftchapaftersnum}{:}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\setlength{\cftchapnumwidth}{6em}
+
+\setlength{\cftaftertoctitleskip}{5pt}
+\setlength{\cftbeforechapskip}{10pt}
+\setlength{\cftbeforesecskip}{3pt}
+\setlength{\cftbeforesubsecskip}{2pt}
+
+\tableofcontents
+\clearpage
+
+\addcontentsline{toc}{chapter}{DANH MỤC HÌNH ẢNH}  % Thêm vào mục lục
+
+% Format tiêu đề Danh mục hình
+\renewcommand{\cftloftitlefont}{\hspace*{\fill}\fontsize{14}{17}\selectfont\bfseries}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+\renewcommand{\listfigurename}{DANH MỤC HÌNH ẢNH}
+
+% Format cho figure trong danh mục
+\renewcommand{\cftfigfont}{\normalfont}
+\renewcommand{\cftfigpagefont}{\normalfont}
+\renewcommand{\cftfigpresnum}{Hình~}
+\renewcommand{\cftfigaftersnum}{:~}
+\setlength{\cftfignumwidth}{5em}
+\setlength{\cftfigindent}{0pt}
+
+% Điều chỉnh khoảng cách
+\setlength{\cftbeforeloftitleskip}{-20pt}
+\setlength{\cftafterloftitleskip}{10pt}
+\setlength{\cftbeforefigskip}{5pt}
+
+
+\listoffigures
+\clearpage
+
+% ===== DANH MỤC BẢNG =====
+\addcontentsline{toc}{chapter}{DANH MỤC BẢNG}  % Thêm vào mục lục
+
+% Format tiêu đề Danh mục bảng
+\renewcommand{\cftlottitlefont}{\hspace*{\fill}\fontsize{14}{17}\selectfont\bfseries}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+\renewcommand{\listtablename}{DANH MỤC BẢNG}
+
+% Format cho table trong danh mục
+\renewcommand{\cfttabfont}{\normalfont}
+\renewcommand{\cfttabpagefont}{\normalfont}
+\renewcommand{\cfttabpresnum}{Bảng~}
+\renewcommand{\cfttabaftersnum}{:~}
+% ===== BỎ KHOẢNG CÁCH GIỮA CÁC CHƯƠNG TRONG DANH MỤC BẢNG =====
+\setlength{\cftbeforetabskip}{0pt}
+\makeatletter
+
+\makeatother
+
+\setlength{\cfttabnumwidth}{5em}
+\setlength{\cfttabindent}{0pt}
+
+
+% Điều chỉnh khoảng cách
+\setlength{\cftbeforelottitleskip}{-20pt}
+\setlength{\cftafterlottitleskip}{10pt}
+\setlength{\cftbeforetabskip}{5pt}
+
+
+\listoftables
+
+
+\clearpage
+\addcontentsline{toc}{chapter}{DANH MỤC TỪ VIẾT TẮT}  % Thêm vào mục lục
+\include{abbreviations}
+\clearpage
+% Bỏ comment nếu cần
+% \listoffigures
+% \clearpage
+% \listoftables
+% \clearpage
+
+% ===== NỘI DUNG CHÍNH - ĐÁNH SỐ Ả-RẬP (1, 2, 3...) =====
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\begin{spacing}{1.5}
+
+
+
+% Các chapter
+\include{chapters/main/chapter1/container}
+\include{chapters/main/chapter2/container}
+\include{chapters/main/chapter3/container}
+\include{chapters/back/conclude/container}
+\include{chapters/back/references}
+
+\end{spacing}
+
+% 15. TÀI LIỆU THAM KHẢO
+\clearpage
+
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
+
+\bibitem{siamese_gfg}
+GeeksforGeeks, "Siamese neural network in deep learning," GeeksforGeeks, 2024. [Online]. Available: https://www.geeksforgeeks.org/nlp/siamese-neural-network-in-deep-learning/. [Accessed: Dec. 20, 2025].
+
+\bibitem{yolov8_ultralytics}
+Ultralytics, "YOLOv8 models," Ultralytics Documentation, 2024. [Online]. Available: https://docs.ultralytics.com/vi/models/yolov8/. [Accessed: Dec. 20, 2025].
+
+\bibitem{siamese_hackernoon}
+"One-shot learning with siamese networks in PyTorch," HackerNoon, 2021. [Online]. Available: https://hackernoon.com/one-shot-learning-with-siamese-networks-in-pytorch-8ddaab10340e. [Accessed: Dec. 20, 2025].
+
+\bibitem{cnn_linkedin}
+LinkedIn, "How can you train a convolutional neural network," LinkedIn Learning, 2023. [Online]. Available: https://www.linkedin.com/advice/3/how-can-you-train-convolutional-neural-network-dtcye. [Accessed: Dec. 20, 2025].
+
+\bibitem{deepface_viso}
+Viso.ai, "DeepFace: Face recognition with deep learning," Viso.ai Computer Vision Blog, 2023. [Online]. Available: https://viso.ai/computer-vision/deepface/. [Accessed: Dec. 20, 2025].
+
+\bibitem{jetpack_compose_mvvm}
+T. GIS, "Creating lists in Android Jetpack Compose using MVVM with ViewModel in Kotlin," Medium, Aug. 2023. [Online]. Available: https://tomasgis.com/creating-lists-in-android-jetpack-compose-using-mvvm-with-viewmodel-in-kotlin-dcfc76945ae7. [Accessed: Dec. 20, 2025].
+
+
+
+\end{thebibliography}
+\end{document}
