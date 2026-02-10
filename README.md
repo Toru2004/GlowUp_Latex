@@ -8,3 +8,4 @@ Cài extension LaTeX Workshop trong VS Code
 
 Chạy lệnh trong VS Code để gen pdf:
 latexmk -pdf main.tex
+latexmk -xelatex main.tex
