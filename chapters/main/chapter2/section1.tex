@@ -2,4 +2,40 @@
 
 \subsection{Yêu cầu chức năng}
 
+Hệ thống website thương mại điện tử được xây dựng nhằm phục vụ hoạt động bán hàng trực tuyến cho một cửa hàng tư nhân. 
+Hệ thống cung cấp các chức năng cho hai đối tượng sử dụng chính là người mua và người bán, đảm bảo hỗ trợ đầy đủ các nghiệp vụ 
+mua bán, thanh toán, quản lý đơn hàng và hỗ trợ khách hàng.
+
+\subsubsection{Sơ đồ phân rã chức năng (BFD)}
+
+Sơ đồ phân rã chức năng (Business Function Decomposition – BFD) mô tả các chức năng nghiệp vụ chính của hệ thống website thương mại điện tử.
+Các chức năng được phân rã từ mức tổng quát xuống các chức năng chi tiết, tương ứng với từng vai trò người dùng trong hệ thống.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{graphics/front/tmdt.drawio.png}
+    \caption{Sơ đồ phân rã chức năng (BFD) của website thương mại điện tử}
+    \label{fig:bfd}
+\end{figure}
+
+\subsubsection{Mô tả ngắn gọn các nhóm chức năng}
+
+\begin{itemize}
+  \item \textbf{Quản lý người mua}: Cho phép người mua đăng ký, đăng nhập, duyệt và tìm kiếm sản phẩm, quản lý giỏ hàng, đặt hàng, theo dõi đơn hàng và đánh giá sản phẩm.
+  \item \textbf{Quản lý thanh toán}: Hỗ trợ thanh toán trực tuyến qua cổng VNPAY và thanh toán trực tiếp khi nhận hàng.
+  \item \textbf{Quản lý giao hàng}: Hỗ trợ người bán chuẩn bị giao hàng và cập nhật trạng thái vận chuyển cho đơn hàng.
+  \item \textbf{Hỗ trợ và AI}: Cung cấp các chức năng hỗ trợ khách hàng như chatbot AI chăm sóc khách hàng, tiếp nhận khiếu nại, thắc mắc và AI tư vấn da mặt gợi ý sản phẩm phù hợp.
+  \item \textbf{Quản lý người bán}: Cho phép người bán quản lý danh mục, sản phẩm, đơn hàng, đánh giá của khách hàng, theo dõi thống kê doanh thu thông qua dashboard và quản lý người dùng.
+\end{itemize}
+
 \subsection{Yêu cầu phi chức năng}
+
+Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các yêu cầu phi chức năng sau:
+
+\begin{itemize}
+  \item \textbf{Tính bảo mật}: Đảm bảo an toàn thông tin người dùng, đặc biệt là dữ liệu tài khoản và thông tin thanh toán.
+  \item \textbf{Hiệu năng}: Hệ thống có thời gian phản hồi nhanh, đáp ứng tốt khi nhiều người dùng truy cập đồng thời.
+  \item \textbf{Tính khả dụng}: Giao diện thân thiện, dễ sử dụng đối với cả người mua và người bán.
+  \item \textbf{Tính mở rộng}: Hệ thống có khả năng mở rộng và nâng cấp thêm các chức năng trong tương lai.
+  \item \textbf{Độ tin cậy}: Hệ thống hoạt động ổn định, hạn chế lỗi và đảm bảo dữ liệu không bị mất mát.
+\end{itemize}
