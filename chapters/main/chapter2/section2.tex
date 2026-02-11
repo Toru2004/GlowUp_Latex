@@ -1,11 +1,137 @@
 \section{Xây dựng Use Case Diagram}
+\subsection{Use case Diagram tổng quát}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.21]{figures/usecase_tq.jpg}
+    \caption{Use case Diagram tổng quát}
+    \label{fig:usecase_overall}
+\end{figure}
+Các Actor trong Hệ thống bao gồm:
+\begin{itemize}[noitemsep]
+    \item Customer: Người dùng cuối sử dụng ứng dụng mobile để đặt lịch cắt tóc, nhận gợi ý kiểu tóc và tư vấn chăm sóc tóc thông qua hệ thống AI.
 
-Sơ đồ Use Case được sử dụng nhằm mô tả các chức năng của hệ thống website thương mại điện tử
-thông qua mối quan hệ tương tác giữa hệ thống và các tác nhân bên ngoài.
-Sơ đồ giúp làm rõ phạm vi hệ thống, các chức năng nghiệp vụ chính cũng như vai trò của từng đối tượng sử dụng.
+    \item Barber Owner: Chủ cửa tiệm hoặc người quản lý sử dụng ứng dụng mobile để quản lý cửa hàng, dịch vụ, thợ cắt tóc và xử lý các lịch hẹn của khách hàng.
 
-\subsection{Các tác nhân trong hệ thống}
+    \item Admin: Người quản trị hệ thống sử dụng web admin panel để quản lý người dùng, cửa tiệm, cấu hình hệ thống và giám sát hoạt động của AI chatbot.
 
+    \item AI System: Hệ thống trí tuệ nhân tạo tự động hỗ trợ khách hàng thông qua phân tích khuôn mặt, gợi ý kiểu tóc và chatbot tư vấn.
+\end{itemize}
+%----------------------------------------------------------------Đăng nhập đăng ký---------------
+\subsection{Use case Diagram chi tiết về xử lý đăng nhập đăng ký}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/usecase_authen.jpg}
+    \caption{Use case Diagram người dùng đăng nhập đăng ký}
+    \label{fig:usecase_user}
+\end{figure}
+Dưới đây là các đặc tả use case của người dùng đăng nhập đăng ký.
+\begin{table}[H]
+    \centering
+    \caption{Đặc tả Use Case UC-01: Đăng ký tài khoản}
+    \label{tab:uc01}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+    \hline
+    \textbf{Actor} & Customer, Barber Owner \\
+    \hline
+\textbf{Mô tả} & Người dùng tạo tài khoản mới \\
+\hline
+\textbf{Tiền điều kiện} & Chưa có tài khoản \\
+\hline
+\textbf{Luồng chính} & 
+1. Nhập thông tin (email, mật khẩu, họ tên) \newline
+2. Hệ thống xác thực thông tin \newline
+3. Gửi xác thực qua email \newline
+4. Click vào link email nhận được \newline
+5. Tạo tài khoản thành công \\
+\hline
+\textbf{Luồng phụ} & 
+2a. Thông tin không hợp lệ $\rightarrow$ Hiển thị lỗi \newline
+4a. Link sai/hết hạn $\rightarrow$ Gửi lại email \\
+\hline
+\textbf{Hậu điều kiện} & Tài khoản được tạo và kích hoạt \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-02: Đăng nhập}
+\label{tab:uc02}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer, Barber Owner, Admin \\
+\hline
+\textbf{Mô tả} & Đăng nhập vào hệ thống \\
+\hline
+\textbf{Tiền điều kiện} & Có tài khoản hợp lệ \\
+\hline
+\textbf{Luồng chính} & 
+1. Nhập email và mật khẩu \newline
+2. Hệ thống xác thực \newline
+3. Cấp token truy cập \newline
+4. Chuyển đến màn hình chính \\
+\hline
+\textbf{Luồng phụ} & 
+2a. Sai thông tin đăng nhập $\rightarrow$ Thông báo lỗi \newline
+2b. Tài khoản bị khóa $\rightarrow$ Thông báo liên hệ admin \\
+\hline
+\textbf{Hậu điều kiện} & Người dùng truy cập được hệ thống \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-03: Đăng xuất}
+\label{tab:uc03}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer, Barber Owner, Admin \\
+\hline
+\textbf{Mô tả} & Thoát khỏi hệ thống \\
+\hline
+\textbf{Luồng chính} & 
+1. Chọn đăng xuất \newline
+2. Xóa token và session \newline
+3. Chuyển về màn hình đăng nhập \\
+\hline
+\textbf{Hậu điều kiện} & Phiên làm việc kết thúc \\
+\hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-04: Quản lý hồ sơ cá nhân}
+\label{tab:uc04}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer, Barber Owner \\
+\hline
+\textbf{Mô tả} & Xem và cập nhật thông tin cá nhân \\
+\hline
+\textbf{Luồng chính} & 
+1. Truy cập hồ sơ cá nhân \newline
+2. Xem thông tin hiện tại \newline
+3. Chỉnh sửa thông tin (tên, SĐT, ảnh đại diện) \newline
+4. Lưu thay đổi \newline
+5. Hệ thống cập nhật thành công \\
+\hline
+\textbf{Luồng phụ} & 
+Extend: Cập nhật số điện thoại \newline
+Extend: Đổi mật khẩu (yêu cầu mật khẩu cũ) \newline
+Extend: Cập nhật ảnh đại diện \\
+\hline
+\textbf{Hậu điều kiện} & Thông tin cá nhân được cập nhật \\
+\hline
+\end{tabular}
+\end{table}
 Hệ thống website thương mại điện tử có hai tác nhân chính tham gia vào quá trình sử dụng hệ thống, bao gồm:
 \begin{itemize}
     \item \textbf{Người mua (Customer)}: Là người sử dụng hệ thống để tìm kiếm, lựa chọn sản phẩm, đặt hàng,

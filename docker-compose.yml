@@ -1,0 +1,7 @@
+services:
+  latex:
+    build: .
+    container_name: latex_builder
+    volumes:
+      - .:/workdir
+    command: latexmk -pdf main.tex
