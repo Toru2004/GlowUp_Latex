@@ -1,5 +1,7 @@
-FROM blang/latex:ctanfull
+FROM texlive/texlive:latest
 
 WORKDIR /workdir
 
-CMD ["latexmk", "-pdf", "main.tex"]
+RUN tlmgr install babel-vietnamese
+
+CMD ["latexmk", "-xelatex", "main.tex"]
