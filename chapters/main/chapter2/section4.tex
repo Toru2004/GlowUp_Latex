@@ -44,3 +44,90 @@ Chức năng phân tích da mặt bằng AI nhằm hỗ trợ người dùng nh�
 Người dùng thực hiện tải ảnh khuôn mặt lên hệ thống. Hệ thống sử dụng MediaPipe để nhận diện khuôn mặt và xác định các vùng da chính gồm trán, má trái/phải, mũi và cằm. Sau đó, từng vùng da được cắt ra và đưa vào mô hình CNN để phân tích tình trạng mụn.  
 
 Kết quả phân tích (bao gồm số lượng, vị trí và mức độ mụn) được hệ thống tổng hợp và hiển thị cho người dùng. Dựa trên kết quả này, hệ thống đồng thời thực hiện hai chức năng: đưa ra lời khuyên chăm sóc da phù hợp và gợi ý các sản phẩm tương ứng với tình trạng da của người dùng.
+%Sơ đồ hoạt động admin đánh giá sản phẩm
+\subsection{Sơ đồ hoạt động admin quản lý đánh giá}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/acctivityadmindanhgia.png}
+    \caption{Sơ đồ hoạt động ADMIN quản lý đánh giá}
+    \label{fig:activity_dg}
+\end{figure}
+
+%Mô tả sơ đồ hoạt động đánh giá sản phẩm
+
+\textbf{Mục đích:}
+
+Chức năng quản lý đánh giá cho phép Admin theo dõi, kiểm soát và xử lý các đánh giá sản phẩm do khách hàng gửi lên hệ thống. Thông qua chức năng này, Admin có thể xem danh sách đánh giá, tìm kiếm hoặc lọc đánh giá theo tiêu chí nhất định, xem chi tiết nội dung đánh giá và thực hiện các thao tác như ẩn hoặc xóa những đánh giá vi phạm quy định.
+
+Mục đích chính của chức năng là đảm bảo nội dung hiển thị trên website phù hợp, duy trì tính minh bạch, chuyên nghiệp và nâng cao chất lượng trải nghiệm người dùng.
+
+\textbf{Luồng hoạt động:}
+
+Admin bắt đầu bằng việc truy cập vào chức năng quản lý đánh giá trong hệ thống. Hệ thống hiển thị danh sách các đánh giá sản phẩm hiện có.
+
+\begin{itemize}
+    \item Trường hợp Admin thực hiện lọc hoặc tìm kiếm đánh giá, hệ thống cập nhật và hiển thị danh sách đánh giá theo tiêu chí đã chọn.
+    
+    \item Khi Admin chọn một đánh giá cụ thể, hệ thống hiển thị nội dung chi tiết của đánh giá đó.
+\end{itemize}
+
+Sau khi xem nội dung đánh giá, Admin có thể lựa chọn hành động xử lý:
+
+\begin{itemize}
+    \item Nếu Admin chọn ẩn đánh giá, hệ thống hiển thị thông báo xác nhận.
+    \begin{itemize}
+        \item Nếu Admin đồng ý, hệ thống cập nhật trạng thái đánh giá sang ``Ẩn'' và làm mới danh sách.
+        \item Nếu Admin hủy, hệ thống không thực hiện thay đổi và quay lại màn hình trước đó.
+    \end{itemize}
+    
+    \item Nếu Admin chọn xóa đánh giá, hệ thống hiển thị thông báo xác nhận.
+    \begin{itemize}
+        \item Nếu Admin đồng ý, hệ thống xóa đánh giá khỏi cơ sở dữ liệu và cập nhật lại danh sách.
+        \item Nếu Admin hủy, hệ thống giữ nguyên dữ liệu và quay lại danh sách đánh giá.
+    \end{itemize}
+\end{itemize}
+
+Sau khi hoàn tất thao tác, hệ thống hiển thị lại danh sách đánh giá đã được cập nhật và quy trình kết thúc.
+%Sơ đồ hoạt động khách hàng đánh giá sản phẩm
+\subsection{Sơ đồ hoạt động khách hàng đánh giá sản phẩm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/acctivitykhachhangdanhgia.png}
+    \caption{Sơ đồ hoạt động đánh giá sản phẩm}
+    \label{fig:activity_dg}
+\end{figure}
+ %Mô tả hoạt động khách hàng đánh giá sản phẩm
+
+\textbf{Mục đích:}
+
+Chức năng đánh giá sản phẩm cho phép khách hàng gửi nhận xét và phản hồi về sản phẩm đã mua. Thông qua chức năng này, khách hàng có thể chia sẻ trải nghiệm sử dụng sản phẩm, góp phần cung cấp thông tin tham khảo cho những người mua sau và giúp hệ thống nâng cao chất lượng dịch vụ.
+
+\textbf{Luồng hoạt động:}
+
+Khách hàng bắt đầu bằng việc lựa chọn sản phẩm đã mua để thực hiện đánh giá.
+
+\begin{itemize}
+    \item Sau khi chọn sản phẩm hợp lệ (đã mua), hệ thống hiển thị biểu mẫu đánh giá.
+    
+    \item Khách hàng nhập nội dung đánh giá vào biểu mẫu.
+    
+    \item Hệ thống tiến hành kiểm tra tính hợp lệ của nội dung đánh giá.
+\end{itemize}
+
+\begin{itemize}
+    \item Nếu nội dung không hợp lệ (thiếu thông tin, vi phạm quy định, vượt quá giới hạn ký tự,...), hệ thống hiển thị thông báo lỗi và yêu cầu khách hàng nhập lại nội dung.
+    
+    \item Nếu nội dung hợp lệ, hệ thống lưu đánh giá vào cơ sở dữ liệu và hiển thị thông báo hoàn thành.
+\end{itemize}
+
+Sau khi nhận được thông báo hoàn thành, khách hàng có thể:
+
+\begin{itemize}
+    \item Chọn ``Đồng ý'' để kết thúc quy trình đánh giá.
+    
+    \item Chọn ``Hủy'' để thoát khỏi chức năng mà không thực hiện thêm thao tác nào.
+\end{itemize}
+
+Quy trình kết thúc khi khách hàng xác nhận hoàn tất hoặc thoát khỏi chức năng.
