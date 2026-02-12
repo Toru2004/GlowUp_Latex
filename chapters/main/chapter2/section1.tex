@@ -6,7 +6,7 @@ Hệ thống website thương mại điện tử được xây dựng nhằm ph�
 Hệ thống cung cấp các chức năng cho hai đối tượng sử dụng chính là người mua và người bán, đảm bảo hỗ trợ đầy đủ các nghiệp vụ 
 mua bán, thanh toán, quản lý đơn hàng và hỗ trợ khách hàng.
 
-\subsubsection{Sơ đồ phân rã chức năng (BFD)}
+\textbf{a) Sơ đồ phân rã chức năng (BFD)}
 
 Sơ đồ phân rã chức năng (Business Function Decomposition – BFD) mô tả các chức năng nghiệp vụ chính của hệ thống website thương mại điện tử.
 Các chức năng được phân rã từ mức tổng quát xuống các chức năng chi tiết, tương ứng với từng vai trò người dùng trong hệ thống.
@@ -18,7 +18,7 @@ Các chức năng được phân rã từ mức tổng quát xuống các chức
 %     \label{fig:bfd}
 % \end{figure}
 
-\subsubsection{Mô tả ngắn gọn các nhóm chức năng}
+\textbf{b) Mô tả ngắn gọn các nhóm chức năng}
 
 \begin{itemize}
   \item \textbf{Quản lý người mua}: Cho phép người mua đăng ký, đăng nhập, duyệt và tìm kiếm sản phẩm, quản lý giỏ hàng, đặt hàng, theo dõi đơn hàng và đánh giá sản phẩm.
@@ -39,3 +39,53 @@ Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các y�
   \item \textbf{Tính mở rộng}: Hệ thống có khả năng mở rộng và nâng cấp thêm các chức năng trong tương lai.
   \item \textbf{Độ tin cậy}: Hệ thống hoạt động ổn định, hạn chế lỗi và đảm bảo dữ liệu không bị mất mát.
 \end{itemize}
+
+\subsection{Thiết kế hệ thống}
+
+\textbf{a) Kiến trúc source Front End}
+
+Hệ thống Front End của GlowUp được thiết kế theo kiến trúc hiện đại, tập trung vào tính mô-đun, khả năng tái sử dụng và hiệu năng tối ưu. Ứng dụng được xây dựng dựa trên framework Nuxt 3, tận dụng tối đa các tính năng của Vue.js 3 và hệ sinh thái liên quan.
+
+\begin{itemize}
+    \item \textbf{Tổng quan về Framework Nuxt 3}:
+    Hệ thống sử dụng Nuxt 3 (phiên bản 3.17.7) với chế độ Single Page Application (SPA) cho trang Admin và Render đa dạng cho người dùng. Các tính năng cốt lõi được áp dụng bao gồm:
+    \begin{itemize}
+        \item \textbf{File-based Routing}: Tự động tạo route dựa trên cấu trúc thư mục \texttt{pages/}, giúp quản lý điều hướng minh bạch.
+        \begin{itemize}
+            \item \texttt{pages/home}: Trang chủ hiển thị sản phẩm.
+            \item \texttt{pages/admin}: Các trang quản trị điều khiển và thống kê.
+            \item \texttt{pages/auth}: Các trang đăng nhập, đăng ký và lấy lại mật khẩu.
+        \end{itemize}
+        \item \textbf{Auto-imports}: Tự động nạp các Component, Composable và hàm từ thư viện, giúp mã nguồn gọn gàng và tăng tốc độ phát triển.
+    \end{itemize}
+
+    \item \textbf{Cơ chế Quản lý Trạng thái (State Management)}:
+    Ứng dụng kết hợp linh hoạt giữa State nội bộ và State toàn cục:
+    \begin{itemize}
+        \item \textbf{Vue State (\texttt{useState})}: Được dùng để duy trì trạng thái đồng nhất giữa Server-Side Rendering và Client-Side Rendering, cụ thể là quản lý thông tin phiên đăng nhập (\texttt{auth\_token}) và giỏ hàng (\texttt{cart\_state}) trong suốt vòng đời ứng dụng.
+        \item \textbf{Pinia Store}: Sử dụng để quản lý các logic UI phức tạp hoặc dữ liệu cần lưu trữ lâu dài thông qua plugin \texttt{pinia-plugin-persistedstate}, đảm bảo trải nghiệm người dùng không bị gián đoạn khi tải lại trang.
+    \end{itemize}
+
+    \item \textbf{Lớp Dịch vụ API (API Service Layer)}:
+    Để tương tác với Backend một cách hiệu quả và bảo mật, hệ thống triển khai lớp \texttt{useApi}:
+    \begin{itemize}
+        \item \textbf{Tự động xác thực}: Mọi request gửi đi đều được tự động nhúng JWT Token vào Header (\texttt{Authorization: Bearer <token>}) nếu người dùng đã đăng nhập.
+        \item \textbf{Xử lý tập trung}: Các phương thức \texttt{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp dễ dàng bảo trì và thay đổi URL API tại file cấu hình \texttt{nuxt.config.ts}.
+    \end{itemize}
+
+    \item \textbf{Bảo mật và Kiểm soát Quyền truy cập}:
+    Hệ thống triển khai cơ chế Middleware toàn cục (\texttt{auth.global.ts}) để bảo vệ tài nguyên:
+    \begin{itemize}
+        \item \textbf{Navigation Guards}: Kiểm tra trạng thái đăng nhập trước khi truy cập bất kỳ route nào (ngoại trừ trang Auth).
+        \item \textbf{Role-based Access Control (RBAC)}: Phân định rõ ràng quyền hạn giữa \textit{Admin} (truy cập Dashboard, quản lý hệ thống) và \textit{Customer} (quản lý giỏ hàng, đặt hàng cá nhân). Người dùng không có quyền sẽ tự động bị điều hướng về trang đăng nhập.
+    \end{itemize}
+
+    \item \textbf{Tổ chức Mã nguồn và Công nghệ bổ trợ}:
+    \begin{itemize}
+        \item \textbf{Giao diện (\texttt{components/})}: Chia nhỏ UI thành các Atomic Component có tính tái sử dụng cực cao.
+        \item \textbf{Composables (\texttt{logic/})}: Tách biệt hoàn toàn logic nghiệp vụ (ví dụ: \texttt{useOrder}, \texttt{useCart}) ra khỏi giao diện, tuân thủ nguyên lý Separation of Concerns.
+        \item \textbf{Hệ sinh thái đi kèm}: Sử dụng Tailwind CSS để tối ưu hóa việc viết mã giao diện; Firebase Auth để xác thực nhanh; Leaflet cho các tính năng địa lý và Chart.js cho các báo cáo trực quan.
+    \end{itemize}
+\end{itemize}
+
+\textbf{b) Kiến trúc source Back End}
