@@ -389,3 +389,110 @@ Luồng thay thế &
 \hline
 \end{tabular}
 \end{table}
+
+
+% usecase đánh giá sản phẩm admin
+\subsection{Use case Diagram đánh giá sản phẩm admin}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{graphics/main/chapter2/section2/usecasedgamin.png}
+    \caption{Use case Diagram đánh giá sản phẩm }
+    \label{fig:usecase_acne}
+\end{figure}
+ 
+%đặc tả admin
+\subsubsection{Đặc tả Use Case Quản lý đánh giá sản phẩm}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Nội dung} \\ \hline
+
+Tên Use Case & Quản lý đánh giá sản phẩm \\ \hline
+
+Actor & Admin \\ \hline
+
+Mô tả & 
+Cho phép Admin xem, kiểm duyệt hoặc xóa các đánh giá sản phẩm do khách hàng gửi lên hệ thống. \\ \hline
+
+Điều kiện tiên quyết & 
+Admin đã đăng nhập thành công vào hệ thống. \\ \hline
+
+Hậu điều kiện & 
+Đánh giá được cập nhật trạng thái (hiển thị/ẩn) hoặc bị xóa khỏi hệ thống. \\ \hline
+
+Luồng chính & 
+1. Admin truy cập trang quản lý đánh giá. \newline
+2. Hệ thống hiển thị danh sách đánh giá của khách hàng. \newline
+3. Admin chọn một đánh giá cụ thể. \newline
+4. Admin có thể lọc đánh giá. \newline
+4. Thực hiện thao tác duyệt, ẩn hoặc xóa đánh giá. \newline
+5. Hệ thống cập nhật dữ liệu và hiển thị danh sách mới. \\ \hline
+
+Luồng thay thế & 
+Nếu xảy ra lỗi hệ thống hoặc không tìm thấy đánh giá, hệ thống hiển thị thông báo lỗi và không thực hiện thay đổi. \\ \hline
+
+\end{tabular}
+\caption{Đặc tả Use Case Quản lý đánh giá sản phẩm (Admin)}
+\end{table}
+
+% usecase khách hàng đánh giá sản phẩm 
+\subsection{Use case Diagram khách hàng đánh giá sản phẩm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{graphics/main/chapter2/section2/usecasecusdg.png}
+    \caption{Use case Diagram đánh giá sản phẩm }
+    \label{fig:usecase_acne}
+\end{figure}
+ 
+%đặc tả khách hàng đánh giá sản phẩm 
+\subsubsection{Đặc tả Use Case Khách hàng đánh giá sản phẩm}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Nội dung} \\ \hline
+
+Tên Use Case & Đánh giá sản phẩm \\ \hline
+
+Mã Use Case & UC-CUS-05 \\ \hline
+
+Tác nhân & Customer \\ \hline
+
+Mô tả & 
+Cho phép khách hàng đánh giá sản phẩm đã mua khi đơn hàng ở trạng thái hoàn thành. \\ \hline
+
+Điều kiện tiên quyết & 
+- Khách hàng đã đăng nhập. \newline
+- Đơn hàng đã hoàn thành. \\ \hline
+
+Hậu điều kiện & 
+Đánh giá được lưu vào hệ thống và hiển thị tại trang sản phẩm. \\ \hline
+
+Luồng chính & 
+1. Khách hàng đăng nhập. \newline
+2. Truy cập mục “Đơn hàng của tôi”. \newline
+3. Chọn đơn hàng đã hoàn thành. \newline
+4. Chọn “Đánh giá sản phẩm”. \newline
+5. Nhập nội dung và chọn số sao. \newline
+6. Gửi đánh giá. \newline
+7. Hệ thống lưu và thông báo thành công. \\ \hline
+
+Luồng mở rộng (Extend) & 
+- Đánh giá sao (1–5 sao). \newline
+- Viết bình luận chi tiết. \newline
+- Gửi ảnh/video minh họa. \newline
+- Sửa đánh giá sau khi đã gửi. \\ \hline
+
+Luồng thay thế & 
+- Đơn hàng chưa hoàn thành → không được đánh giá. \newline
+- Nội dung vi phạm → hệ thống từ chối. \newline
+- Ảnh/video sai định dạng → báo lỗi. \\ \hline
+
+\end{tabular}
+\caption{Đặc tả Use Case Khách hàng đánh giá sản phẩm}
+\end{table}
