@@ -1,1 +1,46 @@
 \section{Sơ đồ hoạt động (Activity Diagram)}
+
+
+
+
+\subsection{Sơ đồ hoạt động xử lý thanh toán}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/activity_vnpay.jpg}
+    \caption{Sơ đồ hoạt động thanh toán qua VNPAY}
+    \label{fig:activity_vnpay}
+\end{figure}
+
+\textbf{Mục đích:}  
+Chức năng thanh toán và quản lý đơn hàng nhằm hỗ trợ người dùng hoàn tất quá trình mua hàng trên hệ thống một cách thuận tiện và an toàn. Hệ thống cung cấp hai hình thức thanh toán là thanh toán khi nhận hàng (COD) và thanh toán trực tuyến qua cổng VNPay, giúp người dùng linh hoạt lựa chọn phương thức phù hợp. Đồng thời, chức năng này cho phép người dùng theo dõi lịch sử đơn hàng và gửi yêu cầu hủy đơn khi cần thiết, hỗ trợ Admin quản lý và xử lý trạng thái đơn hàng một cách hiệu quả.
+
+\textbf{Luồng hoạt động:}  
+Người dùng bắt đầu bằng việc lựa chọn phương thức thanh toán cho đơn hàng.  
+
+\begin{itemize}
+    \item Trường hợp người dùng chọn thanh toán khi nhận hàng (COD), hệ thống tiến hành tạo đơn hàng và hiển thị kết quả thanh toán cho người dùng.
+    \item Trường hợp người dùng chọn thanh toán qua VNPay, hệ thống chuyển hướng người dùng đến cổng thanh toán VNPay để thực hiện giao dịch. Sau khi quá trình thanh toán được xử lý:
+    \begin{itemize}
+        \item Nếu giao dịch thành công, hệ thống cập nhật trạng thái đơn hàng và hiển thị kết quả thanh toán thành công.
+        \item Nếu giao dịch thất bại, hệ thống thông báo kết quả thất bại để người dùng có thể thực hiện lại hoặc lựa chọn phương thức thanh toán khác.
+    \end{itemize}
+\end{itemize}
+
+Sau khi hoàn tất thanh toán, người dùng có thể xem lịch sử đơn hàng. Trong trường hợp người dùng có nhu cầu hủy đơn, hệ thống tiếp nhận yêu cầu hủy và chuyển cho Admin xử lý. Sau khi Admin xác nhận, hệ thống cập nhật lại trạng thái đơn hàng tương ứng và thông báo kết quả cho người dùng.
+
+\subsection{Sơ đồ hoạt động phân tích da mặt}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/activity_acne.jpg}
+    \caption{Sơ đồ hoạt động phân tích da mặt}
+    \label{fig:activity_acne}
+\end{figure}
+
+
+\textbf{Mục đích:}  
+Chức năng phân tích da mặt bằng AI nhằm hỗ trợ người dùng nhận biết tình trạng da và mức độ mụn thông qua hình ảnh khuôn mặt được tải lên hệ thống. Hệ thống ứng dụng công nghệ MediaPipe để nhận diện khuôn mặt và các điểm đặc trưng, kết hợp mô hình CNN để phân tích tình trạng mụn trên từng vùng da. Dựa trên kết quả phân tích, hệ thống đưa ra lời khuyên chăm sóc da và gợi ý sản phẩm phù hợp, giúp người dùng lựa chọn sản phẩm hiệu quả và cá nhân hóa trải nghiệm mua sắm.
+
+\textbf{Luồng hoạt động:}  
+Người dùng thực hiện tải ảnh khuôn mặt lên hệ thống. Hệ thống sử dụng MediaPipe để nhận diện khuôn mặt và xác định các vùng da chính gồm trán, má trái/phải, mũi và cằm. Sau đó, từng vùng da được cắt ra và đưa vào mô hình CNN để phân tích tình trạng mụn.  
+
+Kết quả phân tích (bao gồm số lượng, vị trí và mức độ mụn) được hệ thống tổng hợp và hiển thị cho người dùng. Dựa trên kết quả này, hệ thống đồng thời thực hiện hai chức năng: đưa ra lời khuyên chăm sóc da phù hợp và gợi ý các sản phẩm tương ứng với tình trạng da của người dùng.
