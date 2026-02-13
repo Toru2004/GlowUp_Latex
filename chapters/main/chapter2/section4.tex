@@ -3,11 +3,11 @@
 
 
 
-\subsection{Sơ đồ hoạt động xử lý thanh toán}
+\subsection{Activity Diagram xử lý thanh toán}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/activity_vnpay.jpg}
-    \caption{Sơ đồ hoạt động thanh toán qua VNPAY}
+    \caption{Activity Diagram thanh toán qua VNPAY}
     \label{fig:activity_vnpay}
 \end{figure}
 
@@ -28,11 +28,11 @@ Người dùng bắt đầu bằng việc lựa chọn phương thức thanh to�
 
 Sau khi hoàn tất thanh toán, người dùng có thể xem lịch sử đơn hàng. Trong trường hợp người dùng có nhu cầu hủy đơn, hệ thống tiếp nhận yêu cầu hủy và chuyển cho Admin xử lý. Sau khi Admin xác nhận, hệ thống cập nhật lại trạng thái đơn hàng tương ứng và thông báo kết quả cho người dùng.
 
-\subsection{Sơ đồ hoạt động phân tích da mặt}
+\subsection{Activity Diagram phân tích da mặt}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/activity_acne.jpg}
-    \caption{Sơ đồ hoạt động phân tích da mặt}
+    \caption{Activity Diagram phân tích da mặt}
     \label{fig:activity_acne}
 \end{figure}
 
@@ -44,17 +44,17 @@ Chức năng phân tích da mặt bằng AI nhằm hỗ trợ người dùng nh�
 Người dùng thực hiện tải ảnh khuôn mặt lên hệ thống. Hệ thống sử dụng MediaPipe để nhận diện khuôn mặt và xác định các vùng da chính gồm trán, má trái/phải, mũi và cằm. Sau đó, từng vùng da được cắt ra và đưa vào mô hình CNN để phân tích tình trạng mụn.  
 
 Kết quả phân tích (bao gồm số lượng, vị trí và mức độ mụn) được hệ thống tổng hợp và hiển thị cho người dùng. Dựa trên kết quả này, hệ thống đồng thời thực hiện hai chức năng: đưa ra lời khuyên chăm sóc da phù hợp và gợi ý các sản phẩm tương ứng với tình trạng da của người dùng.
-%Sơ đồ hoạt động admin đánh giá sản phẩm
-\subsection{Sơ đồ hoạt động admin quản lý đánh giá}
+%Activity Diagram admin đánh giá sản phẩm
+\subsection{Activity Diagram admin quản lý đánh giá}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/acctivityadmindanhgia.png}
-    \caption{Sơ đồ hoạt động ADMIN quản lý đánh giá}
+    \caption{Activity Diagram ADMIN quản lý đánh giá}
     \label{fig:activity_dg}
 \end{figure}
 
-%Mô tả sơ đồ hoạt động đánh giá sản phẩm
+%Mô tả Activity Diagram đánh giá sản phẩm
 
 \textbf{Mục đích:}
 
@@ -89,13 +89,13 @@ Sau khi xem nội dung đánh giá, Admin có thể lựa chọn hành động x
 \end{itemize}
 
 Sau khi hoàn tất thao tác, hệ thống hiển thị lại danh sách đánh giá đã được cập nhật và quy trình kết thúc.
-%Sơ đồ hoạt động khách hàng đánh giá sản phẩm
-\subsection{Sơ đồ hoạt động khách hàng đánh giá sản phẩm}
+%Activity Diagram khách hàng đánh giá sản phẩm
+\subsection{Activity Diagram khách hàng đánh giá sản phẩm}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section2/acctivitykhachhangdanhgia.png}
-    \caption{Sơ đồ hoạt động đánh giá sản phẩm}
+    \caption{Activity Diagram đánh giá sản phẩm}
     \label{fig:activity_dg}
 \end{figure}
  %Mô tả hoạt động khách hàng đánh giá sản phẩm
@@ -131,3 +131,370 @@ Sau khi nhận được thông báo hoàn thành, khách hàng có thể:
 \end{itemize}
 
 Quy trình kết thúc khi khách hàng xác nhận hoàn tất hoặc thoát khỏi chức năng.
+
+\subsection{Activity Diagram ChatbotAI RAG tư vấn sản phẩm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_chat.jpg}
+    \caption{Activity Diagram ChatbotAI RAG tư vấn sản phẩm}
+    \label{fig:activity_chat}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng ChatbotAI RAG tư vấn sản phẩm cho phép khách hàng đặt câu hỏi và nhận phản hồi tự động từ hệ thống về thông tin sản phẩm, chính sách hoặc các nội dung liên quan. Hệ thống sử dụng cơ chế truy xuất tri thức (RAG) kết hợp mô hình ngôn ngữ lớn để cung cấp câu trả lời chính xác và phù hợp theo ngữ cảnh.
+
+\textbf{Luồng hoạt động:}
+
+Khách hàng bắt đầu bằng việc mở cửa sổ chatbot trên hệ thống.
+
+\begin{itemize}
+    \item Hệ thống khởi tạo phiên trò chuyện, hiển thị giao diện chat và lời chào ban đầu.
+    
+    \item Khách hàng nhập câu hỏi cần tư vấn.
+    
+    \item Hệ thống hiển thị trạng thái đang xử lý.
+    
+    \item Câu hỏi được chuyển thành vector embedding và sử dụng để tìm kiếm trong cơ sở dữ liệu vector (Qdrant).
+    
+    \item Hệ thống truy xuất ngữ cảnh (context) liên quan từ dữ liệu đã lưu trữ.
+\end{itemize}
+
+\begin{itemize}
+    \item Nếu tìm thấy ngữ cảnh phù hợp:
+    \begin{itemize}
+        \item Nếu có thông tin sản phẩm liên quan, hệ thống gọi mô hình ngôn ngữ (LLM) để tạo câu trả lời kèm thông tin sản phẩm.
+        
+        \item Nếu không có thông tin sản phẩm cụ thể, hệ thống tạo câu trả lời thông thường dựa trên ngữ cảnh.
+    \end{itemize}
+    
+    \item Nếu không tìm thấy ngữ cảnh phù hợp, hệ thống hiển thị câu trả lời mặc định.
+\end{itemize}
+
+Sau khi nhận được câu trả lời, khách hàng có thể:
+
+\begin{itemize}
+    \item Nhấn vào sản phẩm được gợi ý để chuyển đến trang chi tiết sản phẩm.
+    
+    \item Hoặc tiếp tục nhập câu hỏi khác để trò chuyện.
+\end{itemize}
+
+Quy trình lặp lại cho đến khi khách hàng không tiếp tục đặt câu hỏi và đóng chatbot. Khi đó, phiên trò chuyện kết thúc.
+
+\subsection{Activity Diagram Theo dõi trạng thái đơn vận chuyển}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_VC.jpg}
+    \caption{Activity Diagram theo dõi trạng thái đơn vận chuyển}
+    \label{fig:activity_VC}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng theo dõi và cập nhật trạng thái vận chuyển cho phép quản trị viên (Admin) giám sát tiến trình giao hàng, cập nhật trạng thái đơn vận chuyển và thông báo đến khách hàng. Chức năng này giúp đảm bảo thông tin giao hàng luôn chính xác, minh bạch và kịp thời.
+
+\textbf{Luồng hoạt động:}
+
+Quản trị viên bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
+
+\begin{itemize}
+    \item Hệ thống tải danh sách các đơn vận chuyển từ cơ sở dữ liệu.
+    
+    \item Danh sách đơn được hiển thị kèm trạng thái hiện tại của từng đơn.
+    
+    \item Quản trị viên chọn đơn vận chuyển cần xem chi tiết.
+    
+    \item Hệ thống tải và hiển thị thông tin chi tiết đơn vận chuyển, bao gồm mã đơn, thông tin khách hàng, địa chỉ giao hàng, shipper phụ trách và trạng thái hiện tại.
+\end{itemize}
+
+Sau khi xem thông tin, quản trị viên có thể quyết định cập nhật trạng thái vận chuyển.
+
+\begin{itemize}
+    \item Nếu không cập nhật trạng thái, quy trình kết thúc.
+    
+    \item Nếu cập nhật, quản trị viên chọn trạng thái mới cho đơn vận chuyển.
+\end{itemize}
+
+\begin{itemize}
+    \item Nếu trạng thái là ``Đang lấy hàng'', hệ thống cập nhật trạng thái này vào cơ sở dữ liệu.
+    
+    \item Nếu trạng thái là ``Đang giao'', hệ thống cập nhật tương ứng.
+    
+    \item Nếu trạng thái là ``Giao thành công'', hệ thống cập nhật trạng thái vận chuyển và đồng thời chuyển trạng thái đơn hàng sang ``Hoàn thành''.
+    
+    \item Nếu trạng thái là ``Giao thất bại'', hệ thống cập nhật trạng thái thất bại và ghi nhận lý do giao hàng không thành công.
+\end{itemize}
+
+Sau khi cập nhật thành công:
+
+\begin{itemize}
+    \item Hệ thống gửi thông báo đến khách hàng về trạng thái mới của đơn hàng.
+    
+    \item Hệ thống hiển thị thông báo cập nhật thành công cho quản trị viên.
+\end{itemize}
+
+Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi quản trị viên không thực hiện thay đổi.
+
+
+\subsection{Activity Diagram Quản lý vận chuyển}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_MVC.jpg}
+    \caption{Activity Diagram Quản lý vận chuyển}
+    \label{fig:activity_mvc}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng quản lý vận chuyển cho phép quản trị viên (Admin) theo dõi, kiểm soát và cập nhật trạng thái vận chuyển của các đơn hàng. Thông qua chức năng này, hệ thống hỗ trợ quản lý lịch sử giao hàng, đảm bảo thông tin vận chuyển được cập nhật chính xác và kịp thời.
+
+\textbf{Luồng hoạt động:}
+
+Quản trị viên bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
+
+\begin{itemize}
+    \item Hệ thống tải danh sách các đơn vận chuyển từ cơ sở dữ liệu.
+    
+    \item Danh sách đơn vận chuyển được hiển thị để quản trị viên lựa chọn.
+    
+    \item Quản trị viên chọn một đơn hàng cần quản lý.
+    
+    \item Hệ thống lấy lịch sử theo dõi (tracking) của đơn hàng và hiển thị chi tiết đơn hàng kèm các trạng thái đã cập nhật trước đó.
+\end{itemize}
+
+Sau khi xem thông tin, quản trị viên có thể quyết định cập nhật trạng thái vận chuyển.
+
+\begin{itemize}
+    \item Nếu không cập nhật trạng thái, quy trình kết thúc.
+    
+    \item Nếu cập nhật trạng thái, quản trị viên thực hiện các bước sau:
+    \begin{itemize}
+        \item Chọn trạng thái vận chuyển mới.
+        
+        \item Nhập các thông tin bổ sung (nếu có).
+        
+        \item Xác nhận việc cập nhật.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item Hệ thống kiểm tra tính hợp lệ của thông tin đã nhập.
+    
+    \item Nếu thông tin không hợp lệ, hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại.
+    
+    \item Nếu thông tin hợp lệ, hệ thống tạo bản ghi theo dõi vận chuyển mới trong cơ sở dữ liệu và hiển thị thông báo cập nhật thành công.
+\end{itemize}
+
+Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi quản trị viên không thực hiện thay đổi.
+
+\subsection{Activity Diagram Quản lý hồ sơ cá nhân}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_profile.jpg}
+    \caption{Activity Diagram quản lý hồ sơ cá nhân}
+    \label{fig:activity_profile}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng quản lý hồ sơ cá nhân cho phép khách hàng xem và cập nhật thông tin tài khoản của mình, bao gồm thông tin cơ bản, ảnh đại diện và mật khẩu. Chức năng này giúp người dùng duy trì thông tin chính xác, đảm bảo tính bảo mật và nâng cao trải nghiệm sử dụng hệ thống.
+
+\textbf{Luồng hoạt động:}
+
+Khách hàng bắt đầu bằng việc truy cập chức năng quản lý hồ sơ cá nhân.
+
+\begin{itemize}
+    \item Hệ thống kiểm tra trạng thái đăng nhập của người dùng.
+    
+    \item Nếu người dùng chưa đăng nhập, hệ thống chuyển hướng đến trang đăng nhập và quy trình kết thúc.
+    
+    \item Nếu người dùng đã đăng nhập, khách hàng mở trang thông tin cá nhân.
+    
+    \item Hệ thống tải dữ liệu người dùng từ bảng \textit{users} và hiển thị thông tin hiện tại.
+\end{itemize}
+
+Tại trang này, khách hàng có thể lựa chọn một trong các thao tác cập nhật sau:
+
+\begin{itemize}
+    \item \textbf{Cập nhật thông tin cơ bản:}
+    \begin{itemize}
+        \item Khách hàng chỉnh sửa họ tên hoặc số điện thoại.
+        
+        \item Hệ thống kiểm tra tính hợp lệ của dữ liệu.
+        
+        \item Nếu không hợp lệ, hệ thống hiển thị thông báo lỗi.
+        
+        \item Nếu hợp lệ, hệ thống cập nhật thông tin vào bảng \textit{users} và hiển thị thông báo thành công.
+    \end{itemize}
+    
+    \item \textbf{Cập nhật ảnh đại diện:}
+    \begin{itemize}
+        \item Khách hàng tải lên ảnh mới.
+        
+        \item Hệ thống kiểm tra định dạng và tính hợp lệ của ảnh.
+        
+        \item Nếu ảnh không hợp lệ, hệ thống hiển thị thông báo lỗi.
+        
+        \item Nếu hợp lệ, hệ thống lưu ảnh, cập nhật trường \textit{avatar\_url} và hiển thị thông báo thành công.
+    \end{itemize}
+    
+    \item \textbf{Đổi mật khẩu:}
+    \begin{itemize}
+        \item Khách hàng nhập mật khẩu hiện tại, mật khẩu mới và xác nhận mật khẩu mới.
+        
+        \item Hệ thống kiểm tra mật khẩu hiện tại.
+        
+        \item Nếu mật khẩu hiện tại không đúng, hệ thống thông báo lỗi.
+        
+        \item Nếu đúng, hệ thống kiểm tra độ mạnh và tính hợp lệ của mật khẩu mới.
+        
+        \item Nếu mật khẩu mới không hợp lệ hoặc không khớp với phần xác nhận, hệ thống hiển thị thông báo lỗi.
+        
+        \item Nếu hợp lệ, hệ thống mã hóa mật khẩu mới, cập nhật vào cơ sở dữ liệu, đồng thời gửi email thông báo thay đổi mật khẩu và hiển thị thông báo thành công.
+    \end{itemize}
+\end{itemize}
+
+Quy trình kết thúc sau khi thao tác cập nhật hoàn tất hoặc khi người dùng rời khỏi chức năng.
+
+\subsection{Activity Diagram Quản lý cửa hàng}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_store.jpg}
+    \caption{Activity Diagram Quản lý cửa hàng}
+    \label{fig:activity_store}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng quản lý cửa hàng cho phép quản trị viên (Admin) cập nhật thông tin của Shop, bao gồm thông tin mô tả và vị trí trên bản đồ. Chức năng này giúp đảm bảo dữ liệu cửa hàng luôn chính xác, hỗ trợ khách hàng tìm kiếm và liên hệ thuận tiện hơn.
+
+\textbf{Luồng hoạt động:}
+
+Quản trị viên bắt đầu bằng việc mở trang quản lý Shop trên hệ thống.
+
+\begin{itemize}
+    \item Hệ thống tải thông tin Shop từ cơ sở dữ liệu.
+    
+    \item Thông tin hiện tại của Shop được hiển thị dưới dạng biểu mẫu chỉnh sửa kèm bản đồ vị trí.
+\end{itemize}
+
+Tại trang này, quản trị viên có thể lựa chọn một trong hai loại cập nhật:
+
+\begin{itemize}
+    \item \textbf{Cập nhật thông tin chữ:}
+    \begin{itemize}
+        \item Quản trị viên chỉnh sửa các thông tin như tên Shop, mô tả, số điện thoại liên hệ, v.v.
+    \end{itemize}
+    
+    \item \textbf{Cập nhật vị trí trên bản đồ:}
+    \begin{itemize}
+        \item Quản trị viên tìm kiếm địa chỉ trên bản đồ.
+        
+        \item Hệ thống hiển thị kết quả vị trí tương ứng.
+        
+        \item Quản trị viên chọn (chấm) vị trí Shop trên bản đồ.
+        
+        \item Hệ thống lấy tọa độ địa lý (vĩ độ, kinh độ) từ điểm được chọn.
+    \end{itemize}
+\end{itemize}
+
+Sau khi hoàn tất chỉnh sửa, quản trị viên xác nhận cập nhật.
+
+\begin{itemize}
+    \item Hệ thống kiểm tra tính hợp lệ của thông tin đã nhập.
+    
+    \item Nếu thông tin không hợp lệ, hệ thống hiển thị thông báo lỗi và quy trình kết thúc.
+    
+    \item Nếu thông tin hợp lệ, hệ thống cập nhật dữ liệu Shop vào cơ sở dữ liệu và hiển thị thông báo cập nhật thành công.
+\end{itemize}
+
+Quy trình kết thúc sau khi thông tin được cập nhật hoặc khi xảy ra lỗi xác thực.
+
+\subsection{Activity Diagram Quản lý địa chỉ liên lạc}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{graphics/main/chapter2/section4/A_dcll.jpg}
+    \caption{Activity Diagram Quản lý địa chỉ liên lạc}
+    \label{fig:activity_address}
+\end{figure}
+
+\textbf{Mục đích:}
+
+Chức năng quản lý địa chỉ liên lạc cho phép khách hàng thêm mới, chỉnh sửa, xóa và thiết lập địa chỉ mặc định để phục vụ cho việc giao hàng. Chức năng này giúp khách hàng quản lý thông tin nhận hàng thuận tiện và chính xác.
+
+\textbf{Luồng hoạt động:}
+
+Khách hàng bắt đầu bằng việc mở trang quản lý địa chỉ trên hệ thống.
+
+\begin{itemize}
+    \item Hệ thống tải danh sách các địa chỉ đã lưu từ cơ sở dữ liệu.
+    
+    \item Danh sách địa chỉ được hiển thị để khách hàng lựa chọn thao tác.
+\end{itemize}
+
+Khách hàng có thể thực hiện một trong các thao tác sau:
+
+\begin{itemize}
+    \item \textbf{Thêm địa chỉ mới:}
+    \begin{itemize}
+        \item Khách hàng nhập thông tin địa chỉ (tên người nhận, số điện thoại, địa chỉ chi tiết).
+        
+        \item Khách hàng tìm kiếm địa chỉ trên bản đồ và chọn vị trí cụ thể.
+        
+        \item Hệ thống hiển thị vị trí trên bản đồ và lấy tọa độ địa lý (vĩ độ, kinh độ).
+        
+        \item Khách hàng có thể chọn đặt địa chỉ này làm mặc định.
+        
+        \item Khách hàng xác nhận lưu địa chỉ.
+        
+        \item Hệ thống kiểm tra tính hợp lệ của dữ liệu.
+        
+        \item Nếu không hợp lệ, hệ thống hiển thị thông báo lỗi.
+        
+        \item Nếu hợp lệ, hệ thống lưu địa chỉ mới vào cơ sở dữ liệu và hiển thị thông báo thành công.
+    \end{itemize}
+    
+    \item \textbf{Chỉnh sửa địa chỉ:}
+    \begin{itemize}
+        \item Khách hàng chọn địa chỉ cần chỉnh sửa.
+        
+        \item Hệ thống hiển thị biểu mẫu chỉnh sửa kèm vị trí hiện tại trên bản đồ.
+        
+        \item Khách hàng cập nhật thông tin và xác nhận.
+        
+        \item Hệ thống kiểm tra tính hợp lệ.
+        
+        \item Nếu hợp lệ, hệ thống cập nhật địa chỉ trong cơ sở dữ liệu và hiển thị thông báo thành công; nếu không, hiển thị lỗi.
+    \end{itemize}
+    
+    \item \textbf{Đặt địa chỉ mặc định:}
+    \begin{itemize}
+        \item Khách hàng chọn địa chỉ cần đặt làm mặc định.
+        
+        \item Hệ thống bỏ trạng thái mặc định của địa chỉ cũ và thiết lập địa chỉ mới làm mặc định.
+        
+        \item Thông tin được cập nhật vào cơ sở dữ liệu và hiển thị thông báo thành công.
+    \end{itemize}
+    
+    \item \textbf{Xóa địa chỉ:}
+    \begin{itemize}
+        \item Khách hàng chọn địa chỉ cần xóa.
+        
+        \item Nếu địa chỉ là mặc định, hệ thống không cho phép xóa và hiển thị thông báo.
+        
+        \item Nếu không phải mặc định, hệ thống yêu cầu xác nhận xóa.
+        
+        \item Nếu khách hàng xác nhận, địa chỉ sẽ bị xóa khỏi cơ sở dữ liệu và hiển thị thông báo thành công; nếu không, hệ thống quay lại danh sách.
+    \end{itemize}
+\end{itemize}
+
+Quy trình kết thúc sau khi thao tác được thực hiện hoặc khi người dùng rời khỏi chức năng.
+
+

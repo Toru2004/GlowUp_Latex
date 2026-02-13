@@ -92,7 +92,7 @@ Admin bắt đầu bằng việc mở trang quản lý đánh giá.
 \textbf{Trường hợp lọc đánh giá:}
 
 \begin{itemize}
-    \item Admin nhập tiêu chí lọc (ví dụ: số sao, ngày đánh giá,...).
+    \item Admin nhập tiêu chí lọc.
     \item Trang quản lý gửi yêu cầu lọc đến Hệ thống xử lý.
     \item Hệ thống truy vấn dữ liệu theo tiêu chí đã nhập.
     \item Kết quả lọc được trả về và danh sách đánh giá được cập nhật trên giao diện.
@@ -159,3 +159,359 @@ Khách hàng nhập số sao và nội dung bình luận, sau đó nhấn nút `
     \item Hệ thống không lưu dữ liệu.
     \item Giao diện hiển thị thông báo lỗi và yêu cầu khách hàng nhập lại nội dung.
 \end{itemize}
+\subsection{Sơ đồ tuần tự ChatbotAI tư vấn sản phẩm}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_chat.jpg}
+    \caption{Sơ đồ tuần tự ChatbotAI tư vấn sản phẩm}
+    \label{fig:sequence_chatbot}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quá trình tương tác giữa khách hàng và hệ thống ChatbotAI trong việc tư vấn sản phẩm. Hệ thống sử dụng cơ chế RAG (Retrieval-Augmented Generation), bao gồm chuyển đổi câu hỏi thành vector, truy xuất dữ liệu từ cơ sở dữ liệu vector và sinh câu trả lời bằng mô hình ngôn ngữ lớn.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Khởi tạo phiên trò chuyện}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng mở chatbot trên hệ thống
+    \item Giao diện chat được hiển thị kèm lời chào ban đầu
+\end{enumerate}
+
+\textbf{Gửi câu hỏi và xử lý}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng nhập câu hỏi
+    \item Giao diện hiển thị trạng thái đang xử lý (ví dụ: ``Đang nhập...'')
+    \item Câu hỏi được gửi đến ChatController
+    \item ChatService xử lý câu hỏi
+    \item EmbeddingService chuyển câu hỏi thành vector embedding
+    \item Hệ thống tìm kiếm thông tin liên quan trong Qdrant Vector Database
+\end{enumerate}
+
+\textbf{Sinh câu trả lời}
+
+\begin{itemize}[noitemsep]
+    \item Nếu tìm thấy ngữ cảnh có thông tin sản phẩm:
+    \begin{itemize}
+        \item Hệ thống gửi câu hỏi và ngữ cảnh đến mô hình LLM (Ollama)
+        \item Sinh câu trả lời kèm sản phẩm gợi ý
+        \item Hiển thị câu trả lời và danh sách sản phẩm liên quan
+        \item Khách hàng có thể nhấn vào sản phẩm để chuyển đến trang chi tiết
+    \end{itemize}
+
+    \item Nếu tìm thấy ngữ cảnh nhưng không có thông tin sản phẩm:
+    \begin{itemize}
+        \item LLM tạo câu trả lời thông thường dựa trên ngữ cảnh
+        \item Hệ thống hiển thị câu trả lời cho khách hàng
+    \end{itemize}
+
+    \item Nếu không tìm thấy ngữ cảnh phù hợp:
+    \begin{itemize}
+        \item Hệ thống trả về câu trả lời mặc định
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Sơ đồ tuần tự Quản lý địa chỉ liên lạc}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_address.jpg}
+    \caption{Sơ đồ tuần tự Quản lý địa chỉ liên lạc}
+    \label{fig:sequence_address}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quá trình khách hàng quản lý các địa chỉ liên lạc trong hệ thống, bao gồm xem danh sách địa chỉ, thêm địa chỉ mới, chỉnh sửa, đặt làm địa chỉ mặc định và xóa địa chỉ. Sơ đồ thể hiện sự tương tác giữa giao diện người dùng, controller, service và model trong quá trình xử lý.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Xem danh sách địa chỉ}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng mở trang quản lý địa chỉ
+    \item Hệ thống truy vấn danh sách địa chỉ của khách hàng từ cơ sở dữ liệu
+    \item Danh sách địa chỉ được hiển thị trên giao diện
+\end{enumerate}
+
+\textbf{Thêm địa chỉ mới}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn thêm địa chỉ mới
+    \item Hệ thống hiển thị biểu mẫu nhập thông tin và bản đồ
+    \item Khách hàng nhập thông tin địa chỉ và chọn vị trí trên bản đồ
+    \item Khách hàng có thể chọn đặt làm địa chỉ mặc định
+    \item Hệ thống kiểm tra tính hợp lệ của dữ liệu
+    \item Nếu dữ liệu hợp lệ:
+    \begin{itemize}
+        \item Nếu đặt làm mặc định, hệ thống bỏ trạng thái mặc định của địa chỉ cũ
+        \item Lưu địa chỉ mới vào cơ sở dữ liệu
+        \item Hiển thị thông báo tạo thành công
+    \end{itemize}
+    \item Nếu dữ liệu không hợp lệ, hệ thống hiển thị thông báo lỗi
+\end{enumerate}
+
+\textbf{Chỉnh sửa địa chỉ}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn địa chỉ cần chỉnh sửa
+    \item Hệ thống hiển thị thông tin địa chỉ hiện tại
+    \item Khách hàng cập nhật thông tin và xác nhận lưu
+    \item Hệ thống kiểm tra dữ liệu và cập nhật vào cơ sở dữ liệu nếu hợp lệ
+    \item Hiển thị thông báo cập nhật thành công hoặc lỗi nếu có
+\end{enumerate}
+
+\textbf{Đặt địa chỉ mặc định}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn địa chỉ cần đặt làm mặc định
+    \item Hệ thống bỏ trạng thái mặc định của địa chỉ cũ
+    \item Thiết lập địa chỉ mới làm mặc định
+    \item Hiển thị thông báo cập nhật thành công
+\end{enumerate}
+
+\textbf{Xóa địa chỉ}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn địa chỉ cần xóa
+    \item Hệ thống kiểm tra xem địa chỉ có phải mặc định hay không
+    \item Nếu là địa chỉ mặc định, hệ thống từ chối xóa và hiển thị thông báo lỗi
+    \item Nếu không phải mặc định:
+    \begin{itemize}
+        \item Hệ thống yêu cầu xác nhận xóa
+        \item Nếu khách hàng xác nhận, địa chỉ được xóa khỏi cơ sở dữ liệu
+        \item Hiển thị thông báo xóa thành công
+        \item Nếu hủy, hệ thống quay lại danh sách địa chỉ
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Sơ đồ tuần tự Theo dõi đơn vận chuyển}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_VC.jpg}
+    \caption{Sơ đồ tuần tự Theo dõi đơn vận chuyển}
+    \label{fig:sequence_tracking}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quy trình khách hàng tra cứu và theo dõi trạng thái vận chuyển của đơn hàng thông qua mã đơn hàng. Sơ đồ thể hiện sự tương tác giữa khách hàng, giao diện theo dõi, controller, dịch vụ vận chuyển, mô hình dữ liệu và dịch vụ thông báo.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Tra cứu thông tin vận chuyển}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng truy cập trang theo dõi đơn hàng
+    \item Hệ thống hiển thị biểu mẫu nhập mã đơn hàng
+    \item Khách hàng nhập mã đơn và thực hiện tra cứu
+    \item Hệ thống gửi yêu cầu đến backend để lấy thông tin vận chuyển
+\end{enumerate}
+
+\textbf{Trường hợp đơn hàng tồn tại}
+
+\begin{enumerate}[noitemsep]
+    \item Hệ thống trả về thông tin vận chuyển gồm:
+    \begin{itemize}[noitemsep]
+        \item Mã đơn hàng
+        \item Trạng thái hiện tại
+        \item Thời gian cập nhật
+        \item Shipper phụ trách
+        \item Địa chỉ giao hàng
+    \end{itemize}
+    
+    \item Khách hàng có thể xem lịch sử vận chuyển chi tiết
+    
+    \item Hệ thống hiển thị dòng thời gian (timeline) các trạng thái như:
+    \begin{itemize}[noitemsep]
+        \item Đang lấy hàng
+        \item Đang giao
+        \item Giao thành công hoặc thất bại
+        \item Thời gian tương ứng cho từng trạng thái
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Đăng ký nhận thông báo}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn đăng ký nhận thông báo khi trạng thái thay đổi
+    \item Khách hàng cung cấp thông tin liên hệ (email hoặc số điện thoại)
+    \item Hệ thống lưu đăng ký và xác nhận thành công
+    \item Khách hàng sẽ nhận thông báo khi trạng thái đơn hàng thay đổi
+\end{enumerate}
+
+\textbf{Trường hợp không tìm thấy đơn hàng}
+
+\begin{enumerate}[noitemsep]
+    \item Nếu mã đơn hàng không tồn tại, hệ thống hiển thị thông báo lỗi
+    \item Khách hàng được yêu cầu kiểm tra và nhập lại mã đơn hàng
+\end{enumerate}
+\subsection{Sơ đồ tuần tự Quản lý vận chuyển}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_mVC.jpg}
+    \caption{Sơ đồ tuần tự Quản lý vận chuyển}
+    \label{fig:sequence_shipping_management}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quy trình quản lý vận chuyển đơn hàng từ phía quản trị viên (Admin). Sơ đồ thể hiện cách Admin xem danh sách đơn vận chuyển, xem chi tiết lịch sử trạng thái và cập nhật trạng thái vận chuyển của đơn hàng trong hệ thống.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Xem danh sách đơn vận chuyển}
+
+\begin{enumerate}[noitemsep]
+    \item Admin truy cập trang quản lý vận chuyển
+    \item Hệ thống tải danh sách tất cả các đơn vận chuyển từ cơ sở dữ liệu
+    \item Danh sách đơn vận chuyển được hiển thị cho Admin
+\end{enumerate}
+
+\textbf{Xem chi tiết đơn vận chuyển}
+
+\begin{enumerate}[noitemsep]
+    \item Admin chọn một đơn hàng trong danh sách
+    \item Hệ thống truy xuất lịch sử vận chuyển của đơn hàng
+    \item Hệ thống hiển thị chi tiết đơn hàng và các trạng thái đã cập nhật trước đó
+\end{enumerate}
+
+\textbf{Cập nhật trạng thái vận chuyển}
+
+\begin{enumerate}[noitemsep]
+    \item Admin chọn trạng thái mới cho đơn hàng
+    \item Admin nhập thông tin bổ sung (nếu có), ví dụ:
+    \begin{itemize}[noitemsep]
+        \item Vị trí hiện tại
+        \item Ghi chú hoặc mô tả
+        \item Người cập nhật
+    \end{itemize}
+    
+    \item Admin xác nhận cập nhật
+    
+    \item Hệ thống tạo bản ghi tracking mới trong cơ sở dữ liệu
+    
+    \item Hệ thống hiển thị thông báo cập nhật thành công
+\end{enumerate}
+
+\textbf{Không cập nhật}
+
+\begin{enumerate}[noitemsep]
+    \item Nếu Admin không thực hiện cập nhật, hệ thống quay lại danh sách đơn vận chuyển
+\end{enumerate}
+\subsection{Sơ đồ tuần tự Quản lý hồ sơ}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_profile.jpg}
+    \caption{Sơ đồ tuần tự Quản lý hồ sơ}
+    \label{fig:sequence_profile}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quy trình quản lý thông tin cá nhân của khách hàng trên hệ thống. Sơ đồ thể hiện cách người dùng xem thông tin hồ sơ, chỉnh sửa và cập nhật dữ liệu cá nhân như tên, số điện thoại và ảnh đại diện.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Xem thông tin hồ sơ}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng truy cập trang cá nhân
+    \item Hệ thống truy xuất thông tin người dùng từ cơ sở dữ liệu
+    \item Thông tin cá nhân được hiển thị trên giao diện
+\end{enumerate}
+
+\textbf{Chỉnh sửa hồ sơ}
+
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn chức năng chỉnh sửa hồ sơ
+    \item Hệ thống hiển thị biểu mẫu chỉnh sửa thông tin
+    \item Khách hàng cập nhật các thông tin cần thay đổi như:
+    \begin{itemize}[noitemsep]
+        \item Họ tên
+        \item Số điện thoại
+        \item Ảnh đại diện (avatar)
+    \end{itemize}
+    
+    \item Khách hàng xác nhận cập nhật
+\end{enumerate}
+
+\textbf{Xử lý cập nhật}
+
+\begin{enumerate}[noitemsep]
+    \item Hệ thống kiểm tra tính hợp lệ của dữ liệu nhập vào
+    
+    \item Nếu thông tin không hợp lệ:
+    \begin{itemize}[noitemsep]
+        \item Hệ thống trả về thông báo lỗi
+        \item Người dùng được yêu cầu chỉnh sửa lại
+    \end{itemize}
+    
+    \item Nếu thông tin hợp lệ:
+    \begin{itemize}[noitemsep]
+        \item Hệ thống cập nhật dữ liệu người dùng trong cơ sở dữ liệu
+        \item Hệ thống hiển thị thông báo cập nhật thành công
+    \end{itemize}
+\end{enumerate}
+\subsection{Sơ đồ tuần tự Quản lý cửa hàng}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section5/S_store.jpg}
+    \caption{Sơ đồ tuần tự Quản lý cửa hàng}
+    \label{fig:sequence_store}
+\end{figure}
+
+\subsubsection{Mục đích}
+
+Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Shop) của quản trị viên (Admin). Sơ đồ thể hiện cách Admin xem thông tin hiện tại của cửa hàng, chỉnh sửa dữ liệu và cập nhật lại vào hệ thống, bao gồm cả thông tin mô tả và vị trí trên bản đồ.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\textbf{Xem thông tin cửa hàng}
+
+\begin{enumerate}[noitemsep]
+    \item Quản trị viên truy cập trang quản lý Shop
+    \item Hệ thống truy xuất thông tin cửa hàng từ cơ sở dữ liệu
+    \item Thông tin Shop được hiển thị dưới dạng biểu mẫu chỉnh sửa kèm bản đồ vị trí
+\end{enumerate}
+
+\textbf{Chỉnh sửa thông tin cửa hàng}
+
+\begin{enumerate}[noitemsep]
+    \item Quản trị viên cập nhật các thông tin cần thay đổi như:
+    \begin{itemize}[noitemsep]
+        \item Tên cửa hàng
+        \item Mô tả
+        \item Thông tin liên hệ
+        \item Vị trí trên bản đồ
+    \end{itemize}
+    
+    \item Quản trị viên xác nhận cập nhật
+\end{enumerate}
+
+\textbf{Xử lý cập nhật}
+
+\begin{enumerate}[noitemsep]
+    \item Hệ thống kiểm tra tính hợp lệ của dữ liệu nhập vào
+    
+    \item Nếu thông tin không hợp lệ:
+    \begin{itemize}[noitemsep]
+        \item Hệ thống trả về thông báo lỗi
+        \item Quản trị viên cần chỉnh sửa lại thông tin
+    \end{itemize}
+    
+    \item Nếu thông tin hợp lệ:
+    \begin{itemize}[noitemsep]
+        \item Hệ thống cập nhật dữ liệu Shop vào cơ sở dữ liệu
+        \item Hệ thống hiển thị thông báo cập nhật thành công
+    \end{itemize}
+\end{enumerate}
