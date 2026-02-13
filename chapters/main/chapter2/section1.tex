@@ -50,11 +50,11 @@ Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các y�
     \item \textbf{Tổng quan về Framework Nuxt 3}:
     Hệ thống sử dụng Nuxt 3 (phiên bản 3.17.7) với chế độ Single Page Application (SPA) cho trang Admin và Render đa dạng cho người dùng. Các tính năng cốt lõi được áp dụng bao gồm:
     \begin{itemize}
-        \item \textbf{File-based Routing}: Tự động tạo route dựa trên cấu trúc thư mục \texttt{pages/}, giúp quản lý điều hướng minh bạch.
+        \item \textbf{File-based Routing}: Tự động tạo route dựa trên cấu trúc thư mục \textbf{pages/}, giúp quản lý điều hướng minh bạch.
         \begin{itemize}
-            \item \texttt{pages/home}: Trang chủ hiển thị sản phẩm.
-            \item \texttt{pages/admin}: Các trang quản trị điều khiển và thống kê.
-            \item \texttt{pages/auth}: Các trang đăng nhập, đăng ký và lấy lại mật khẩu.
+            \item \textbf{pages/home}: Trang chủ hiển thị sản phẩm.
+            \item \textbf{pages/admin}: Các trang quản trị điều khiển và thống kê.
+            \item \textbf{pages/auth}: Các trang đăng nhập, đăng ký và lấy lại mật khẩu.
         \end{itemize}
         \item \textbf{Auto-imports}: Tự động nạp các Component, Composable và hàm từ thư viện, giúp mã nguồn gọn gàng và tăng tốc độ phát triển.
     \end{itemize}
@@ -62,19 +62,19 @@ Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các y�
     \item \textbf{Cơ chế Quản lý Trạng thái (State Management)}:
     Ứng dụng kết hợp linh hoạt giữa State nội bộ và State toàn cục:
     \begin{itemize}
-        \item \textbf{Vue State (\texttt{useState})}: Được dùng để duy trì trạng thái đồng nhất giữa Server-Side Rendering và Client-Side Rendering, cụ thể là quản lý thông tin phiên đăng nhập (\texttt{auth\_token}) và giỏ hàng (\texttt{cart\_state}) trong suốt vòng đời ứng dụng.
-        \item \textbf{Pinia Store}: Sử dụng để quản lý các logic UI phức tạp hoặc dữ liệu cần lưu trữ lâu dài thông qua plugin \texttt{pinia-plugin-persistedstate}, đảm bảo trải nghiệm người dùng không bị gián đoạn khi tải lại trang.
+        \item \textbf{Vue State (\textbf{useState})}: Được dùng để duy trì trạng thái đồng nhất giữa Server-Side Rendering và Client-Side Rendering, cụ thể là quản lý thông tin phiên đăng nhập (\textbf{auth\_token}) và giỏ hàng (\textbf{cart\_state}) trong suốt vòng đời ứng dụng.
+        \item \textbf{Pinia Store}: Sử dụng để quản lý các logic UI phức tạp hoặc dữ liệu cần lưu trữ lâu dài thông qua plugin \textbf{pinia-plugin-persistedstate}, đảm bảo trải nghiệm người dùng không bị gián đoạn khi tải lại trang.
     \end{itemize}
 
     \item \textbf{Lớp Dịch vụ API (API Service Layer)}:
     Để tương tác với Backend một cách hiệu quả và bảo mật, hệ thống triển khai lớp \texttt{useApi}:
     \begin{itemize}
-        \item \textbf{Tự động xác thực}: Mọi request gửi đi đều được tự động nhúng JWT Token vào Header (\texttt{Authorization: Bearer <token>}) nếu người dùng đã đăng nhập.
-        \item \textbf{Xử lý tập trung}: Các phương thức \texttt{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp dễ dàng bảo trì và thay đổi URL API tại file cấu hình \texttt{nuxt.config.ts}.
+        \item \textbf{Tự động xác thực}: Mọi request gửi đi đều được tự động nhúng JWT Token vào Header (\textbf{Authorization: Bearer <token>}) nếu người dùng đã đăng nhập.
+        \item \textbf{Xử lý tập trung}: Các phương thức \textbf{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp dễ dàng bảo trì và thay đổi URL API tại file cấu hình \textbf{nuxt.config.ts}.
     \end{itemize}
 
     \item \textbf{Bảo mật và Kiểm soát Quyền truy cập}:
-    Hệ thống triển khai cơ chế Middleware toàn cục (\texttt{auth.global.ts}) để bảo vệ tài nguyên:
+    Hệ thống triển khai cơ chế Middleware toàn cục (\textbf{auth.global.ts}) để bảo vệ tài nguyên:
     \begin{itemize}
         \item \textbf{Navigation Guards}: Kiểm tra trạng thái đăng nhập trước khi truy cập bất kỳ route nào (ngoại trừ trang Auth).
         \item \textbf{Role-based Access Control (RBAC)}: Phân định rõ ràng quyền hạn giữa \textit{Admin} (truy cập Dashboard, quản lý hệ thống) và \textit{Customer} (quản lý giỏ hàng, đặt hàng cá nhân). Người dùng không có quyền sẽ tự động bị điều hướng về trang đăng nhập.
@@ -82,8 +82,8 @@ Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các y�
 
     \item \textbf{Tổ chức Mã nguồn và Công nghệ bổ trợ}:
     \begin{itemize}
-        \item \textbf{Giao diện (\texttt{components/})}: Chia nhỏ UI thành các Atomic Component có tính tái sử dụng cực cao.
-        \item \textbf{Composables (\texttt{logic/})}: Tách biệt hoàn toàn logic nghiệp vụ (ví dụ: \texttt{useOrder}, \texttt{useCart}) ra khỏi giao diện, tuân thủ nguyên lý Separation of Concerns.
+        \item \textbf{Giao diện (\textbf{components/})}: Chia nhỏ UI thành các Atomic Component có tính tái sử dụng cực cao.
+        \item \textbf{Composables (\textbf{logic/})}: Tách biệt hoàn toàn logic nghiệp vụ (ví dụ: \textbf{useOrder}, \textbf{useCart}) ra khỏi giao diện, tuân thủ nguyên lý Separation of Concerns.
         \item \textbf{Hệ sinh thái đi kèm}: Sử dụng Tailwind CSS để tối ưu hóa việc viết mã giao diện; Leaflet cho các tính năng địa lý và Chart.js cho các báo cáo trực quan.
     \end{itemize}
 \end{itemize}
@@ -103,19 +103,21 @@ Bên cạnh các yêu cầu chức năng, hệ thống cần đáp ứng các y�
         \item \textbf{Middlewares}: Xử lý các tác vụ xuyên suốt như xác thực, phân quyền và bắt lỗi.
     \end{itemize}
 
-    \item \textbf{Sơ đồ cấu trúc thư mục chính của dự án (\texttt{src/})}:
-\begin{verbatim}
-src/
- |-- config/       # Cấu hình hệ thống (DB, Environment)
- |-- controllers/  # Xử lý request/response
- |-- middlewares/  # Xác thực và xử lý lỗi
- |-- models/       # Định nghĩa lược đồ dữ liệu
- |-- routes/       # Khai báo các API endpoint
- |-- scripts/      # Các script hỗ trợ/migrate
- |-- services/     # Xử lý logic nghiệp vụ chính
- |-- uploads/      # Lưu trữ tệp tin người dùng tải lên
- +-- app.js        # File khởi động chính của hệ thống
-\end{verbatim}
+    \item \textbf{Sơ đồ cấu trúc thư mục chính của dự án (\textbf{src/})}:
+    \begin{itemize}[noitemsep, topsep=0pt]
+        \item \textbf{src/}: Thư mục chứa toàn bộ mã nguồn của hệ thống Backend.
+        \begin{itemize}[noitemsep]
+            \item \textbf{config/}: Quản lý các cấu hình quan trọng như DB và biến môi trường.
+            \item \textbf{controllers/}: Tiếp nhận và xử lý request/response.
+            \item \textbf{middlewares/}: Xử lý xác thực, phân quyền và bắt lỗi.
+            \item \textbf{models/}: Định nghĩa lược đồ dữ liệu và tương tác DB.
+            \item \textbf{routes/}: Khai báo các API endpoint.
+            \item \textbf{scripts/}: Các script hỗ trợ hoặc migrate dữ liệu.
+            \item \textbf{services/}: Xử lý logic nghiệp vụ chính.
+            \item \textbf{uploads/}: Lưu trữ tệp tin đa phương tiện.
+            \item \textbf{app.js}: File khởi động chính của hệ thống.
+        \end{itemize}
+    \end{itemize}
 
     \item \textbf{Mô tả chức năng chi tiết các thành phần}:
     \begin{itemize}
@@ -129,8 +131,8 @@ src/
 
     \item \textbf{Các tệp tin cấu hình then chốt}:
     \begin{itemize}
-        \item \textbf{\texttt{app.js}}: Là điểm nhập (Entry Point) duy nhất của hệ thống Backend. Tệp này có nhiệm vụ khởi tạo ứng dụng Express, thiết lập các middleware toàn cục (CORS, Body-parser), đăng ký hệ thống route và thiết lập kết nối đến máy chủ cơ sở dữ liệu.
-        \item \textbf{\texttt{.env}}: Tệp lưu trữ các tham số môi trường dưới dạng key-value. Việc không lưu trực tiếp các bí mật (API Key, Database URL) vào mã nguồn giúp ngăn ngừa rò rỉ thông tin quan trọng khi quản lý qua Git.
+        \item \textbf{\textbf{app.js}}: Là điểm nhập (Entry Point) duy nhất của hệ thống Backend. Tệp này có nhiệm vụ khởi tạo ứng dụng Express, thiết lập các middleware toàn cục (CORS, Body-parser), đăng ký hệ thống route và thiết lập kết nối đến máy chủ cơ sở dữ liệu.
+        \item \textbf{\textbf{.env}}: Tệp lưu trữ các tham số môi trường dưới dạng key-value. Việc không lưu trực tiếp các bí mật (API Key, Database URL) vào mã nguồn giúp ngăn ngừa rò rỉ thông tin quan trọng khi quản lý qua Git.
     \end{itemize}
 
     \item \textbf{Ưu điểm của Kiến trúc GlowUp}:
