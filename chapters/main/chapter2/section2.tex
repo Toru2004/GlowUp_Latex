@@ -340,6 +340,130 @@ Luồng thay thế &
 \end{table}
 
 
+
+%----------------------------------------------------------------Giỏ hàng và đặt hàng---------------
+\subsection{Use case Diagram chi tiết về giỏ hàng và đặt hàng}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/main/chapter2/section2/usecase_order.png}
+    \caption{Use case Diagram giỏ hàng và đặt hàng}
+    \label{fig:usecase_order}
+\end{figure}
+Dưới đây là các đặc tả use case của quy trình thêm sản phẩm vào giỏ hàng và đặt hàng.
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-05: Thêm vào giỏ hàng}
+\label{tab:uc05}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer \\
+\hline
+\textbf{Mô tả} & Khách hàng thêm sản phẩm yêu thích vào giỏ hàng để chuẩn bị mua sắm \\
+\hline
+\textbf{Tiền điều kiện} & Khách hàng đang xem chi tiết sản phẩm hoặc danh sách sản phẩm \\
+\hline
+\textbf{Luồng chính} & 
+1. Khách hàng chọn sản phẩm \newline
+2. Chọn số lượng và các tùy chọn (nếu có) \newline
+3. Nhấn nút "Thêm vào giỏ hàng" \newline
+4. Hệ thống kiểm tra tồn kho \newline
+5. Hệ thống thêm sản phẩm vào giỏ hàng và thông báo thành công \\
+\hline
+\textbf{Luồng phụ} & 
+4a. Sản phẩm hết hàng $\rightarrow$ Hệ thống thông báo và không cho phép thêm vào giỏ \\
+\hline
+\textbf{Hậu điều kiện} & Sản phẩm được lưu trong giỏ hàng của khách hàng \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-06: Đặt hàng}
+\label{tab:uc06}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer \\
+\hline
+\textbf{Mô tả} & Khách hàng tiến hành đặt mua các sản phẩm đã có trong giỏ hàng \\
+\hline
+\textbf{Tiền điều kiện} & Có sản phẩm trong giỏ hàng và đã đăng nhập \\
+\hline
+\textbf{Luồng chính} & 
+1. Khách hàng truy cập giỏ hàng \newline
+2. Chọn các sản phẩm muốn thanh toán \newline
+3. Nhấn "Đặt hàng" \newline
+4. Điền thông tin cá nhân (UC-07) \newline
+5. Chọn phương thức thanh toán (UC-08) \newline
+6. Xác nhận đơn hàng \newline
+7. Hệ thống tạo đơn hàng và trừ số lượng tồn kho \\
+\hline
+\textbf{Luồng phụ} & 
+Extend: Chọn mã giảm giá (UC-09) \\
+\hline
+\textbf{Hậu điều kiện} & Đơn hàng được tạo thành công với trạng thái "Chờ xác nhận" \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-07: Điền thông tin cá nhân}
+\label{tab:uc07}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer \\
+\hline
+\textbf{Mô tả} & Cung cấp thông tin nhận hàng cho đơn hàng \\
+\hline
+\textbf{Luồng chính} & 
+1. Nhập họ tên người nhận \newline
+2. Nhập số điện thoại \newline
+3. Nhập địa chỉ giao hàng cụ thể \newline
+4. Hệ thống ghi nhận thông tin \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-08: Chọn phương thức thanh toán}
+\label{tab:uc08}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer \\
+\hline
+\textbf{Mô tả} & Khách hàng lựa chọn cách thức thanh toán cho đơn hàng \\
+\hline
+\textbf{Luồng chính} & 
+1. Khách hàng chọn giữa các phương thức: COD, VNPay, Chuyển khoản \newline
+2. Hệ thống ghi nhận phương thức đã chọn \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Đặc tả Use Case UC-09: Chọn mã giảm giá}
+\label{tab:uc09}
+\begin{tabular}{|p{4cm}|p{11cm}|}
+\hline
+\textbf{Actor} & Customer \\
+\hline
+\textbf{Mô tả} & Khách hàng áp dụng mã khuyến mãi để được giảm giá đơn hàng \\
+\hline
+\textbf{Luồng chính} & 
+1. Nhập mã giảm giá hoặc chọn từ danh sách \newline
+2. Hệ thống kiểm tra điều kiện áp dụng \newline
+3. Tính toán lại tổng tiền đơn hàng \\
+\hline
+\textbf{Luồng phụ} & 
+2a. Mã không hợp lệ/hết hạn $\rightarrow$ Thông báo lỗi \\
+\hline
+\end{tabular}
+\end{table}
+
 % usecase đánh giá sản phẩm admin
 \subsection{Use case Diagram đánh giá sản phẩm admin}
 \begin{figure}[H]
