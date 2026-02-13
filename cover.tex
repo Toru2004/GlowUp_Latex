@@ -1,67 +1,62 @@
-% Trang 2
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+% Khung ngoài
+\draw[line width=5pt, blue!50!black]
+  ([shift={(1.5cm,-1.5cm)}]current page.north west) rectangle
+  ([shift={(-1.5cm,1.5cm)}]current page.south east);
+% Khung trong
+\draw[line width=0.8pt, blue!50!black]
+  ([shift={(1.8cm,-1.8cm)}]current page.north west) rectangle
+  ([shift={(-1.8cm,1.8cm)}]current page.south east);
+% Góc trang trí
+\foreach \corner in {north west, north east, south west, south east}{
+  \draw[line width=1pt] ([shift={(1.3cm,-1.3cm)}]current page.\corner) -- ++(1cm,0);
+  \draw[line width=1pt] ([shift={(1.3cm,-1.3cm)}]current page.\corner) -- ++(0,-1cm);
+}
+\end{tikzpicture}
+
 \begin{center}
-    \doublebox{
-    \begin{minipage}{0.96\textwidth}
-        \vspace{0.5cm}
-        \begin{center}
-            {\fontsize{13}{15}\selectfont \textbf{TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI TP. HỒ CHÍ MINH}}\\
-            {\fontsize{13}{15}\selectfont \textbf{VIỆN CÔNG NGHỆ THÔNG TIN VÀ ĐIỆN, ĐIỆN TỬ}}
+\vspace*{0.3cm}
+{\fontsize{13}{15}\selectfont\bfseries
+TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI TP. HỒ CHÍ MINH\\
+VIỆN CÔNG NGHỆ THÔNG TIN VÀ ĐIỆN, ĐIỆN TỬ}
 
-            
-            \vspace{1cm}
-            
-            \includegraphics[width=0.6\textwidth]{graphics/front/logo_uth.png}
-            
-            \vspace{1.0cm}
-            
-            {\fontsize{22}{26}\selectfont \textbf{BÁO CÁO ĐỒ ÁN}}
-            
-            \vspace{0.8cm}
-            
-            {\fontsize{16}{19}\selectfont \textbf{MÔN THƯƠNG MẠI ĐIỆN TỬ}}
-            
-            \vspace{2cm}
-            
-            {\fontsize{14}{17}\selectfont \textbf{TÊN ĐỀ TÀI:}} \\
-            \vspace{0.3cm}
-            {\fontsize{14}{17}\selectfont \textbf{XÂY DỰNG WEBSITE BÁN MỸ PHẨM KẾT HỢP AI HỖ TRỢ}} \\
-            {\fontsize{14}{17}\selectfont \textbf{TƯ VẤN DA MẶT TRỊ MỤN VÀ CHATBOT GỢI Ý SẢN PHẨM}}
-            
-            \vspace{1.0cm}
-            
-            \begin{flushleft}
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{\underline{SINH VIÊN THỰC HIỆN:}}}
-                
-                \vspace{0.5cm}
-                
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{1. Nhóm trưởng: Lê Tuấn Khang -- MSSV: 2251120420}}
-                
-                \vspace{0.3cm}
-                
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{2. Thành viên: Hồ Huỳnh Nhu -- MSSV: 2251120433}}
-                \vspace{0.3cm}
-                
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{3. Thành viên: Lê Nguyễn Minh Phúc -- MSSV: 2251120040}}
-                \vspace{0.3cm}
+\vspace{1.8cm}
+\includegraphics[width=0.5\textwidth]{graphics/front/logo_uth.png}
 
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{4. Thành viên: Bùi Trọng Vũ -- MSSV: 2251120132}}
-                \vspace{0.3cm}
-                
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{5. Thành viên: Lê Chí Tâm -- MSSV: 2251320031}}
-            \end{flushleft}
-            
-            \vspace{0.8cm}
-            
-            \begin{flushleft}
-                \hspace{1cm}{\fontsize{13}{15}\selectfont \textbf{\underline{GIẢNG VIÊN HƯỚNG DẪN:}} \textbf{ThS. Trần Vũ Đại}}
-            \end{flushleft}
-            
-            \vspace{0.8cm}
-            
-            {\fontsize{13}{15}\selectfont \textbf{Thành phố Hồ Chí Minh, tháng 2 năm 2026}}
-            \vspace{0.3cm}
-          
-        \end{center}
-    \end{minipage}
-    }
+\vspace{1.8cm}
+{\fontsize{22}{26}\selectfont\bfseries BÁO CÁO ĐỒ ÁN}
+
+\vspace{0.6cm}
+{\fontsize{16}{19}\selectfont\bfseries MÔN THƯƠNG MẠI ĐIỆN TỬ}
+
+\vspace{2cm}
+{\fontsize{14}{17}\selectfont\bfseries TÊN ĐỀ TÀI:}\\[0.3cm]
+{\fontsize{14}{17}\selectfont\bfseries
+XÂY DỰNG WEBSITE BÁN MỸ PHẨM KẾT HỢP AI HỖ TRỢ\\
+TƯ VẤN DA MẶT TRỊ MỤN VÀ CHATBOT GỢI Ý SẢN PHẨM}
+
+\vspace{0.8cm}
+\begin{flushleft}
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries\underline{SINH VIÊN THỰC HIỆN:}}\\[0.4cm]
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries
+1. Nhóm trưởng: Lê Tuấn Khang -- MSSV: 2251120420}\\[0.25cm]
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries
+2. Thành viên: Hồ Huỳnh Nhu -- MSSV: 2251120433}\\[0.25cm]
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries
+3. Thành viên: Lê Nguyễn Minh Phúc -- MSSV: 2251120040}\\[0.25cm]
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries
+4. Thành viên: Bùi Trọng Vũ -- MSSV: 2251120132}\\[0.25cm]
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries
+5. Thành viên: Lê Chí Tâm -- MSSV: 2251320031}
+\end{flushleft}
+
+\vspace{0.6cm}
+\begin{flushleft}
+\hspace{1.5cm}{\fontsize{13}{15}\selectfont\bfseries\underline{GIẢNG VIÊN HƯỚNG DẪN:} ThS. Trần Vũ Đại}
+\end{flushleft}
+
+\vspace{1.5cm}
+{\fontsize{13}{15}\selectfont\bfseries Thành phố Hồ Chí Minh, tháng 2 năm 2026}
 \end{center}
+\end{titlepage}
