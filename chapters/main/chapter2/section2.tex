@@ -6,14 +6,21 @@
     \caption{Use case Diagram tổng quát}
     \label{fig:usecase_overall}
 \end{figure}
-Các Actor trong Hệ thống bao gồm:
+Các Actor trong hệ thống bao gồm:
 \begin{itemize}[noitemsep]
-    \item Customer: Khách hàng sử dụng website để xem và mua sản phẩm mỹ phẩm, quản lý giỏ hàng, đặt hàng, thanh toán, đánh giá sản phẩm và nhận tư vấn từ AI chatbot cùng phân tích khuôn mặt để gợi ý sản phẩm phù hợp.
+    \item \textbf{UserBase}: 
+    Là actor cơ sở đại diện cho tất cả người dùng của hệ thống. UserBase thực hiện các chức năng xác thực và quản lý tài khoản bao gồm: đăng ký, đăng nhập, đăng xuất và quản lý thông tin cá nhân.
 
-    \item Admin: Quản trị viên hệ thống sử dụng web admin panel để quản lý toàn bộ hệ thống bao gồm danh mục, sản phẩm, đơn hàng, người dùng, vận chuyển, đánh giá, khuyến mãi và thông tin cửa hàng.
+    \item \textbf{Customer}: 
+    Là actor kế thừa từ UserBase, đại diện cho khách hàng đã đăng nhập hệ thống. Customer có thể thực hiện các chức năng: xem giới thiệu cửa hàng, xem sản phẩm và danh mục, quản lý giỏ hàng, quản lý đơn hàng, thanh toán, đánh giá sản phẩm, quản lý địa chỉ liên hệ, liên hệ cửa hàng, sử dụng chatbot AI tư vấn và AI phân tích khuôn mặt để gợi ý sản phẩm phù hợp.
 
-    \item UserBase: Người dùng cơ bản thực hiện các chức năng xác thực như đăng ký tài khoản mới, đăng nhập vào hệ thống, đăng xuất và quản lý thông tin tài khoản cá nhân.
+    \item \textbf{Guest}: 
+    Là actor đại diện cho người dùng chưa đăng nhập. Guest chỉ có thể thực hiện các chức năng cơ bản như: xem giới thiệu cửa hàng, xem sản phẩm và danh mục.
+
+    \item \textbf{Admin}: 
+    Là actor kế thừa từ UserBase, đại diện cho quản trị viên hệ thống. Admin thực hiện các chức năng quản trị bao gồm: quản lý danh mục, quản lý sản phẩm, quản lý đơn hàng, quản lý người dùng, quản lý vận chuyển, quản lý đánh giá, quản lý khuyến mãi và quản lý thông tin cửa hàng.
 \end{itemize}
+
 %----------------------------------------------------------------Đăng nhập đăng ký---------------
 \subsection{Use case Diagram chi tiết về xử lý đăng nhập đăng ký}
 \begin{figure}[H]
