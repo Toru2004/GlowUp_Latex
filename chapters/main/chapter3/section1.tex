@@ -1,1 +1,50 @@
-\section{Cài đặt}
+\section{Cài đặt Hệ thống}
+
+\subsection{Yêu cầu hệ thống}
+\begin{itemize}[noitemsep]
+    \item Node.js phiên bản 18.x trở lên
+    \item Microsoft SQL Server (LocalDB hoặc Express Edition)
+    \item NPM hoặc Yarn package manager
+\end{itemize}
+
+\subsection{Backend - Express.js}
+Backend được xây dựng trên nền tảng Express.js chạy trên Node.js runtime.
+
+\textbf{Các bước cài đặt:}
+\begin{enumerate}[noitemsep]
+    \item Clone repository và di chuyển vào thư mục backend
+    \item Cài đặt dependencies: npm install
+    \item Cấu hình kết nối database trong file .env
+    \item Chạy migration để tạo database schema
+    \item Khởi động server: npm run dev hoặc npm run dev
+\end{enumerate}
+
+\subsection{Database - Microsoft SQL Server}
+Hệ thống sử dụng Microsoft SQL Server LocalDB để lưu trữ dữ liệu.
+
+\textbf{Cấu hình:}
+\begin{itemize}[noitemsep]
+    \item Server: localhost MSSQLLocalDB
+    \item Database name: GlowUpDB
+    \item Authentication: Windows Authentication
+\end{itemize}
+
+\subsection{Frontend - Nuxt 3.4}
+Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js cho server-side rendering.
+
+\textbf{Các bước cài đặt:}
+\begin{enumerate}[noitemsep]
+    \item Di chuyển vào thư mục frontend
+    \item Cài đặt dependencies: npm install
+    \item Cấu hình API endpoint trong file .env
+    \item Khởi động development server: npm run dev
+    \item Build production: npm run build
+\end{enumerate}
+
+\subsection{Khởi động Hệ thống}
+\begin{enumerate}[noitemsep]
+    \item Khởi động SQL Server
+    \item Khởi động Backend server (mặc định port 8081)
+    \item Khởi động Frontend server (mặc định port 3000)
+    \item Truy cập ứng dụng tại: http://localhost:3000
+\end{enumerate}

@@ -1,0 +1,41 @@
+\section{Sơ đồ ERD (Entity Relationship Diagram)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{graphics/main/chapter2/section6/erd.jpg}
+    \caption{Sơ đồ ERD của hệ thống GlowUp}
+    \label{fig:erd_glowup}
+\end{figure}
+
+\subsection*{Các thực thể}
+
+Cơ sở dữ liệu của hệ thống được thiết kế gồm các thực thể chính sau:
+
+\begin{itemize}[noitemsep]
+    \item \textbf{Users}: Lưu trữ thông tin tài khoản người dùng, phục vụ cho việc đăng nhập, phân quyền và quản lý trạng thái sử dụng hệ thống.
+    \item \textbf{Categories}: Lưu thông tin các danh mục sản phẩm, giúp phân loại sản phẩm theo từng nhóm chức năng.
+    \item \textbf{Products}: Lưu trữ thông tin chi tiết của sản phẩm như tên, thương hiệu, giá bán, số lượng tồn kho và mô tả.
+    \item \textbf{Reviews}: Lưu thông tin đánh giá và nhận xét của người dùng đối với sản phẩm.
+    \item \textbf{Carts}: Lưu thông tin giỏ hàng của người dùng trong quá trình mua sắm.
+    \item \textbf{Cart\_items}: Lưu danh sách các sản phẩm và số lượng tương ứng trong từng giỏ hàng.
+    \item \textbf{Orders}: Lưu thông tin đơn hàng của người dùng sau khi thực hiện thanh toán.
+    \item \textbf{Order\_items}: Lưu chi tiết các sản phẩm thuộc từng đơn hàng.
+    \item \textbf{Payments}: Lưu thông tin giao dịch thanh toán cho các đơn hàng.
+    \item \textbf{Vouchers}: Lưu thông tin mã giảm giá được áp dụng trong quá trình mua sắm.
+    \item \textbf{Shipping\_providers}: Lưu thông tin các đơn vị cung cấp dịch vụ vận chuyển.
+    \item \textbf{Shipping\_methods}: Lưu thông tin các phương thức vận chuyển do từng đơn vị cung cấp.
+    \item \textbf{Shipping\_trackings}: Lưu trạng thái theo dõi quá trình vận chuyển của đơn hàng.
+\end{itemize}
+
+\subsection*{Mối quan hệ giữa các thực thể}
+
+Các thực thể trong hệ thống có mối liên kết chặt chẽ nhằm đảm bảo các chức năng nghiệp vụ được vận hành thống nhất.
+
+Người dùng có thể thực hiện nhiều hoạt động trong hệ thống như tạo giỏ hàng, đặt đơn hàng và gửi đánh giá cho sản phẩm. Trong quá trình mua sắm, mỗi người dùng có thể phát sinh nhiều đơn hàng và nhiều lượt đánh giá khác nhau đối với các sản phẩm đã mua.
+
+Sản phẩm được tổ chức theo từng danh mục nhằm hỗ trợ người dùng dễ dàng tìm kiếm và duyệt sản phẩm. Mỗi danh mục bao gồm nhiều sản phẩm, trong khi mỗi sản phẩm chỉ thuộc về một danh mục cụ thể.
+
+Giỏ hàng được sử dụng để lưu trữ tạm thời các sản phẩm mà người dùng lựa chọn. Một giỏ hàng có thể chứa nhiều sản phẩm với số lượng khác nhau và có thể được chuyển đổi thành đơn hàng khi người dùng tiến hành đặt mua.
+
+Đơn hàng được hình thành từ giỏ hàng của người dùng và bao gồm danh sách các sản phẩm đã chọn. Mỗi đơn hàng gắn liền với thông tin thanh toán tương ứng và được theo dõi trạng thái vận chuyển trong suốt quá trình giao hàng. Đơn hàng được vận chuyển thông qua các phương thức và đơn vị vận chuyển khác nhau tùy theo lựa chọn của người dùng.
+
+Ngoài ra, hệ thống cho phép áp dụng mã giảm giá trong quá trình đặt hàng nhằm hỗ trợ các chương trình khuyến mãi và tăng trải nghiệm mua sắm cho người dùng.

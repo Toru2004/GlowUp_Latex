@@ -1,1 +1,161 @@
 \section{Sơ đồ tuần tự (Sequence Diagram)}
+
+\subsection{Sơ đồ tuần tự xử lý thanh toán}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/sequence_vnpay.jpg}
+    \caption{Sơ đồ tuần tự xử lý thanh toán}
+    \label{fig:sequence_vnpay}
+\end{figure}
+\subsubsection{Mục đích}
+Sequence diagram này mô tả quy trình thanh toán trực tuyến của hệ thống với hai phương thức: thanh toán khi nhận hàng (COD) và thanh toán qua cổng VNPay. Sơ đồ thể hiện tương tác giữa khách hàng, hệ thống backend và cổng thanh toán VNPay trong suốt quá trình đặt hàng và thanh toán.
+
+\subsubsection{Mô tả luồng hoạt động}
+Luồng thanh toán COD
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn phương thức thanh toán COD
+    \item Khách hàng xác nhận thanh toán COD
+    \item Backend tạo đơn hàng mới
+    \item Backend hiển thị kết quả thanh toán COD cho khách hàng
+\end{enumerate}
+
+Luồng thanh toán VNPay
+\begin{enumerate}[noitemsep]
+    \item Khách hàng chọn phương thức thanh toán VNPay
+    \item Backend chuyển hướng khách hàng đến cổng thanh toán VNPay
+    \item VNPay hiển thị giao diện thanh toán cho khách hàng
+    \item Khách hàng thực hiện thanh toán trên VNPay
+    \item VNPay trả kết quả giao dịch (thành công/thất bại) về Backend
+    \item Backend xử lý kết quả:
+    \begin{itemize}[noitemsep]
+        \item Nếu thanh toán thành công: Backend hiển thị kết quả thành công
+        \item Nếu thanh toán thất bại: Backend hiển thị kết quả thất bại
+    \end{itemize}
+\end{enumerate}
+
+Xem lịch sử đơn hàng
+\begin{enumerate}[noitemsep]
+    \item Sau khi thanh toán, khách hàng có thể xem lịch sử đơn hàng
+    \item Backend hiển thị danh sách đơn hàng của khách hàng
+\end{enumerate}
+\subsection{Sơ đồ tuần tự phân tích da mặt}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/sequence_acne.jpg}
+    \caption{Sơ đồ tuần tự phân tích da mặt}
+    \label{fig:sequence_acne}
+\end{figure}
+\subsubsection{Mục đích}
+Sequence diagram này mô tả quy trình phân tích da mặt sử dụng trí tuệ nhân tạo. Sơ đồ thể hiện luồng xử lý từ khi người dùng upload ảnh khuôn mặt, qua các bước nhận diện khuôn mặt bằng MediaPipe, phân tích mụn bằng mô hình CNN, đến khi trả về kết quả phân tích cùng lời khuyên và gợi ý sản phẩm phù hợp.
+
+\subsubsection{Mô tả luồng hoạt động}
+
+\begin{enumerate}[noitemsep]
+    \item Người dùng upload ảnh khuôn mặt lên hệ thống Backend
+    \item Backend gửi ảnh đến MediaPipe để nhận diện khuôn mặt và các điểm landmark
+    \item MediaPipe trả về tọa độ khuôn mặt và các điểm landmark
+    \item Backend cắt từng vùng da mặt (Trán, Má, Mũi, Cằm) dựa trên landmark
+    \item Backend gửi từng vùng da đã cắt đến mô hình CNN để phân tích mụn
+    \item CNN Model phát hiện mụn và trả về kết quả (số lượng, vị trí, mức độ)
+    \item Backend tổng hợp kết quả từ tất cả các vùng da
+    \item Backend trả về kết quả phân tích chi tiết cho người dùng
+    \item Backend đưa ra lời khuyên chăm sóc da dựa trên kết quả phân tích
+    \item Backend gợi ý các sản phẩm phù hợp với tình trạng da của người dùng
+\end{enumerate}
+
+%Seque admin quản lýđánh giá sản phẩm
+
+\subsection{Sơ đồ tuần tự Admin quản lý đánh giá sản phẩm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/sequead1.jpg}
+    \caption{Admin quản lý đánh giá}
+    \label{fig:sequence_adreview}
+\end{figure}
+ %Mô tả admin đánh giá sản phẩm
+
+\textbf{Mục đích:}
+
+Sơ đồ tuần tự mô tả quá trình Admin tương tác với hệ thống để quản lý đánh giá sản phẩm, bao gồm việc xem danh sách đánh giá, lọc theo tiêu chí và thực hiện xóa đánh giá khi cần thiết. Quá trình này đảm bảo Admin có thể kiểm soát nội dung đánh giá hiển thị trên website.
+
+\textbf{Luồng hoạt động:}
+
+Admin bắt đầu bằng việc mở trang quản lý đánh giá.
+
+\begin{itemize}
+    \item Trang quản lý đánh giá gửi yêu cầu lấy danh sách đánh giá đến Hệ thống xử lý.
+    \item Hệ thống xử lý thực hiện truy vấn dữ liệu từ cơ sở dữ liệu đánh giá.
+    \item Dữ liệu đánh giá được trả về cho Hệ thống xử lý.
+    \item Hệ thống gửi kết quả về Trang quản lý để hiển thị danh sách đánh giá cho Admin.
+\end{itemize}
+
+\textbf{Trường hợp lọc đánh giá:}
+
+\begin{itemize}
+    \item Admin nhập tiêu chí lọc (ví dụ: số sao, ngày đánh giá,...).
+    \item Trang quản lý gửi yêu cầu lọc đến Hệ thống xử lý.
+    \item Hệ thống truy vấn dữ liệu theo tiêu chí đã nhập.
+    \item Kết quả lọc được trả về và danh sách đánh giá được cập nhật trên giao diện.
+\end{itemize}
+
+\textbf{Trường hợp xóa đánh giá:}
+
+\begin{itemize}
+    \item Admin chọn một đánh giá và nhấn nút ``Xóa''.
+    \item Hệ thống hiển thị thông báo xác nhận.
+    \item Nếu Admin chọn ``Đồng ý'', Trang quản lý gửi yêu cầu xóa (ID đánh giá) đến Hệ thống xử lý.
+    \item Hệ thống xử lý yêu cầu xóa dữ liệu trong cơ sở dữ liệu.
+    \item Sau khi xóa thành công, hệ thống trả về kết quả và cập nhật lại danh sách đánh giá.
+    \item Giao diện hiển thị thông báo thành công và làm mới danh sách.
+\end{itemize}
+
+Quy trình kết thúc khi hệ thống hoàn tất cập nhật và hiển thị dữ liệu mới nhất cho Admin.
+
+%Mô tả hoạt động khách hàng đánh giá sản phẩm
+
+\subsection{Sơ đồ tuần tự đánh giá sản phẩm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/main/chapter2/section2/sequekh1.jpg}
+    \caption{Khách hàng đánh giá sản phẩm}
+    \label{fig:sequence_adreview}
+\end{figure}
+%Mô tả hoạt động khách hàng đánh giá sản phẩm
+\subsubsection{Mô tả hoạt động Khách hàng -- Sơ đồ tuần tự đánh giá sản phẩm}
+
+\textbf{Mục đích:}
+
+Sơ đồ tuần tự mô tả quá trình khách hàng thực hiện đánh giá sản phẩm sau khi mua hàng. Quy trình bao gồm kiểm tra điều kiện hợp lệ (đã nhận hàng), nhập nội dung đánh giá, xử lý dữ liệu và lưu trữ vào hệ thống.
+
+\textbf{Luồng hoạt động:}
+
+Khách hàng bắt đầu bằng việc chọn chức năng đánh giá tại trang chi tiết sản phẩm.
+
+\begin{itemize}
+    \item Trang chi tiết sản phẩm gửi yêu cầu kiểm tra (UserID, ProductID) đến Hệ thống xử lý.
+    \item Hệ thống xử lý kiểm tra trạng thái đơn hàng trong cơ sở dữ liệu.
+    \item Nếu đơn hàng ở trạng thái đã nhận hàng, hệ thống trả kết quả hợp lệ và hiển thị form nhập đánh giá.
+\end{itemize}
+
+Khách hàng nhập số sao và nội dung bình luận, sau đó nhấn nút ``Gửi đánh giá''.
+
+\begin{itemize}
+    \item Trang chi tiết sản phẩm truyền dữ liệu đánh giá đến Hệ thống xử lý.
+    \item Hệ thống kiểm tra tính hợp lệ của nội dung (spam, từ cấm, thiếu thông tin,...).
+\end{itemize}
+
+\textbf{Trường hợp nội dung hợp lệ:}
+
+\begin{itemize}
+    \item Hệ thống lưu thông tin đánh giá mới vào cơ sở dữ liệu.
+    \item Cập nhật điểm trung bình của sản phẩm.
+    \item Trả về kết quả lưu thành công.
+    \item Giao diện hiển thị thông báo ``Cảm ơn bạn đã đánh giá''.
+\end{itemize}
+
+\textbf{Trường hợp nội dung không hợp lệ:}
+
+\begin{itemize}
+    \item Hệ thống không lưu dữ liệu.
+    \item Giao diện hiển thị thông báo lỗi và yêu cầu khách hàng nhập lại nội dung.
+\end{itemize}

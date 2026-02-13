@@ -4,4 +4,5 @@ services:
     container_name: latex_builder
     volumes:
       - .:/workdir
-    command: latexmk -pdf main.tex
+    command: latexmk -xelatex main.tex
+
