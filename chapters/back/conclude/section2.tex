@@ -1,0 +1,11 @@
+\section{Hạn chế}
+Mặc dù đã nỗ lực hoàn thiện, tuy nhiên do hạn chế về thời gian cũng như kiến thức chuyên sâu trong lĩnh vực thị giác máy tính, hệ thống vẫn khó tránh khỏi một số thiếu sót cần nhìn nhận khách quan:
+\begin{itemize}[noitemsep]
+    \item \textbf{Độ chính xác của mô hình AI:} Kết quả phân tích da mặt vẫn phụ thuộc khá nhiều vào các yếu tố ngoại cảnh như chất lượng camera của thiết bị, cường độ ánh sáng môi trường và góc chụp của người dùng. Trong một số điều kiện ánh sáng phức tạp, mô hình có thể nhầm lẫn giữa các loại mụn hoặc vết thâm.
+
+    \item \textbf{Sự đa dạng của tập dữ liệu (Dataset):} Tập dữ liệu dùng để huấn luyện mô hình CNN hiện tại chủ yếu tập trung vào các loại mụn phổ biến. Hệ thống chưa có khả năng nhận diện sâu các bệnh lý da liễu phức tạp hơn như viêm da cơ địa, nám nội tiết hay các dấu hiệu lão hóa sớm.
+
+    \item \textbf{Tối ưu hóa quy trình vận chuyển:} Hệ thống hiện mới chỉ dừng lại ở việc cập nhật trạng thái đơn hàng thủ công từ phía Admin và mô phỏng phí vận chuyển, chưa tích hợp API thực tế với các đơn vị vận chuyển (như Giao Hàng Nhanh, Viettel Post) để tính phí tự động và theo dõi lộ trình thời gian thực.
+
+    \item \textbf{Khả năng chịu tải (Scalability):} Mặc dù SQL Server xử lý tốt dữ liệu hiện tại, nhưng khi số lượng người dùng đồng thời tăng lên hàng chục ngàn người cùng lúc thực hiện phân tích ảnh AI, hệ thống có thể đối mặt với thách thức về tài nguyên phần cứng và độ trễ phản hồi.
+\end{itemize}
