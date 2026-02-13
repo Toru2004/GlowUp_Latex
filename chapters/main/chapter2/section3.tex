@@ -1,1 +1,317 @@
 \section{Sơ đồ Class (Class Diagram)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{graphics/main/chapter2/section2/class23.jpg}
+    \caption{Sơ đồ lớp thiết kế website bán hàng mỹ phẩm}
+    \label{fig:class_diagram}
+\end{figure}
+
+%====================================================
+% Class Users
+%====================================================
+\subsection{Class Users}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Users}
+\label{tab:users}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính định danh người dùng. \\ \hline
+full\_name & varchar & Họ và tên người dùng. \\ \hline
+email & varchar & Email đăng nhập và xác thực (duy nhất). \\ \hline
+password & varchar & Mật khẩu đã được mã hóa. \\ \hline
+phone & varchar & Số điện thoại liên hệ. \\ \hline
+role & varchar & Vai trò (admin, user). \\ \hline
+status & varchar & Trạng thái tài khoản (active, inactive, banned). \\ \hline
+created\_at & timestamp & Thời điểm tạo tài khoản. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật thông tin gần nhất. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Categories
+%====================================================
+\subsection{Class Categories}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Categories}
+\label{tab:categories}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính danh mục. \\ \hline
+name & varchar & Tên danh mục sản phẩm. \\ \hline
+description & text & Mô tả chi tiết danh mục. \\ \hline
+image & varchar & Hình ảnh đại diện danh mục. \\ \hline
+created\_at & timestamp & Thời điểm tạo danh mục. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật danh mục. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Products
+%====================================================
+\subsection{Class Products}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Products}
+\label{tab:products}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính sản phẩm. \\ \hline
+name & varchar & Tên sản phẩm. \\ \hline
+brand & varchar & Thương hiệu sản phẩm. \\ \hline
+gender & varchar & Giới tính sử dụng (nam, nữ, unisex). \\ \hline
+price & decimal & Giá bán sản phẩm. \\ \hline
+quantity & int & Số lượng tồn kho. \\ \hline
+description & text & Mô tả chi tiết sản phẩm. \\ \hline
+images & text & Danh sách hình ảnh (JSON hoặc URL). \\ \hline
+category\_id & int (FK) & Tham chiếu đến bảng Categories(id). \\ \hline
+created\_at & timestamp & Thời điểm thêm sản phẩm. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật sản phẩm. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Carts
+%====================================================
+\subsection{Class Carts}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Carts}
+\label{tab:carts}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính giỏ hàng. \\ \hline
+user\_id & int (FK) & Tham chiếu đến bảng Users(id). \\ \hline
+created\_at & timestamp & Thời điểm tạo giỏ hàng. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật giỏ hàng. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Cart_Items
+%====================================================
+\subsection{Class Cart\_Items}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Cart\_Items}
+\label{tab:cart_items}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính chi tiết giỏ hàng. \\ \hline
+cart\_id & int (FK) & Tham chiếu đến bảng Carts(id). \\ \hline
+product\_id & int (FK) & Tham chiếu đến bảng Products(id). \\ \hline
+quantity & int & Số lượng sản phẩm trong giỏ. \\ \hline
+created\_at & timestamp & Thời điểm thêm vào giỏ. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật số lượng. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Orders
+%====================================================
+\subsection{Class Orders}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Orders}
+\label{tab:orders}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính đơn hàng. \\ \hline
+user\_id & int (FK) & Tham chiếu đến bảng Users(id). \\ \hline
+total\_price & decimal & Tổng giá trị đơn hàng. \\ \hline
+order\_date & timestamp & Thời điểm đặt hàng. \\ \hline
+payment\_status & varchar & Trạng thái thanh toán (pending, paid, failed). \\ \hline
+payment\_method & varchar & Phương thức thanh toán (COD, VNPay). \\ \hline
+transaction\_no & varchar & Mã giao dịch từ cổng thanh toán. \\ \hline
+bank\_code & varchar & Mã ngân hàng thanh toán. \\ \hline
+payment\_note & text & Ghi chú thanh toán. \\ \hline
+shipping\_provider\_id & int (FK) & Tham chiếu đến Shipping\_Providers(id). \\ \hline
+shipping\_method\_id & int (FK) & Tham chiếu đến Shipping\_Methods(id). \\ \hline
+shipping\_code & varchar & Mã vận đơn của đơn vị vận chuyển. \\ \hline
+shipping\_status & varchar & Trạng thái giao hàng. \\ \hline
+created\_at & timestamp & Thời điểm tạo đơn hàng. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật đơn hàng. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Order_Items
+%====================================================
+\subsection{Class Order\_Items}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Order\_Items}
+\label{tab:order_items}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính chi tiết đơn hàng. \\ \hline
+order\_id & int (FK) & Tham chiếu đến bảng Orders(id). \\ \hline
+product\_id & int (FK) & Tham chiếu đến bảng Products(id). \\ \hline
+quantity & int & Số lượng sản phẩm đặt mua. \\ \hline
+price\_at\_time & decimal & Giá sản phẩm tại thời điểm đặt hàng. \\ \hline
+created\_at & timestamp & Thời điểm tạo bản ghi. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Payments
+%====================================================
+\subsection{Class Payments}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Payments}
+\label{tab:payments}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính thanh toán. \\ \hline
+order\_id & int (FK) & Tham chiếu đến bảng Orders(id). \\ \hline
+amount & decimal & Số tiền thanh toán. \\ \hline
+payment\_method & varchar & Phương thức thanh toán. \\ \hline
+status & varchar & Trạng thái thanh toán. \\ \hline
+transaction\_no & varchar & Mã giao dịch từ cổng thanh toán. \\ \hline
+bank\_code & varchar & Mã ngân hàng. \\ \hline
+bank\_txn\_no & varchar & Mã giao dịch ngân hàng. \\ \hline
+card\_type & varchar & Loại thẻ thanh toán. \\ \hline
+pay\_date & timestamp & Thời điểm thực hiện thanh toán. \\ \hline
+response\_code & varchar & Mã phản hồi từ cổng thanh toán. \\ \hline
+created\_at & timestamp & Thời điểm tạo bản ghi. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Reviews
+%====================================================
+\subsection{Class Reviews}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Reviews}
+\label{tab:reviews}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính đánh giá. \\ \hline
+user\_id & int (FK) & Tham chiếu đến bảng Users(id). \\ \hline
+product\_id & int (FK) & Tham chiếu đến bảng Products(id). \\ \hline
+rating & int & Số sao đánh giá (1--5). \\ \hline
+comment & text & Nội dung nhận xét của khách hàng. \\ \hline
+created\_at & timestamp & Thời điểm tạo đánh giá. \\ \hline
+updated\_at & timestamp & Thời điểm chỉnh sửa đánh giá. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Vouchers
+%====================================================
+\subsection{Class Vouchers}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Vouchers}
+\label{tab:vouchers}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính voucher. \\ \hline
+code & varchar & Mã giảm giá (duy nhất). \\ \hline
+discount\_type & varchar & Loại giảm giá (percent hoặc fixed). \\ \hline
+discount\_value & decimal & Giá trị giảm giá tương ứng. \\ \hline
+min\_order\_value & decimal & Giá trị đơn hàng tối thiểu. \\ \hline
+max\_discount & decimal & Giá trị giảm tối đa. \\ \hline
+quantity & int & Số lượt sử dụng tối đa. \\ \hline
+start\_date & date & Ngày bắt đầu áp dụng. \\ \hline
+end\_date & date & Ngày hết hạn sử dụng. \\ \hline
+status & varchar & Trạng thái (active, expired, disabled). \\ \hline
+created\_at & timestamp & Thời điểm tạo voucher. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật voucher. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Shipping_Providers
+%====================================================
+\subsection{Class Shipping\_Providers}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Shipping\_Providers}
+\label{tab:shipping_providers}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính đơn vị vận chuyển. \\ \hline
+name & varchar & Tên đơn vị vận chuyển. \\ \hline
+code & varchar & Mã đơn vị vận chuyển. \\ \hline
+logo & varchar & Logo đơn vị vận chuyển. \\ \hline
+contact\_phone & varchar & Số điện thoại liên hệ. \\ \hline
+contact\_email & varchar & Email hỗ trợ. \\ \hline
+base\_fee & decimal & Phí vận chuyển cơ bản. \\ \hline
+is\_active & boolean & Trạng thái hoạt động. \\ \hline
+created\_at & timestamp & Thời điểm thêm đơn vị. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Shipping_Methods
+%====================================================
+\subsection{Class Shipping\_Methods}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Shipping\_Methods}
+\label{tab:shipping_methods}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính phương thức vận chuyển. \\ \hline
+provider\_id & int (FK) & Tham chiếu đến Shipping\_Providers(id). \\ \hline
+name & varchar & Tên phương thức vận chuyển. \\ \hline
+code & varchar & Mã phương thức. \\ \hline
+description & text & Mô tả chi tiết. \\ \hline
+estimated\_days\_min & int & Thời gian giao tối thiểu (ngày). \\ \hline
+estimated\_days\_max & int & Thời gian giao tối đa (ngày). \\ \hline
+fee\_per\_km & decimal & Phí vận chuyển mỗi km. \\ \hline
+created\_at & timestamp & Thời điểm tạo. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật. \\ \hline
+\end{tabular}
+\end{table}
+
+%====================================================
+% Class Shipping_Trackings
+%====================================================
+\subsection{Class Shipping\_Trackings}
+
+\begin{table}[H]
+\centering
+\caption{Bảng diễn giải lớp Shipping\_Trackings}
+\label{tab:shipping_trackings}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+\textbf{Thuộc tính} & \textbf{Kiểu dữ liệu} & \textbf{Diễn giải} \\ \hline
+id & int (PK) & Khóa chính theo dõi vận chuyển. \\ \hline
+order\_id & int (FK) & Tham chiếu đến bảng Orders(id). \\ \hline
+status & varchar & Trạng thái giao hàng hiện tại. \\ \hline
+location & varchar & Vị trí hiện tại của đơn hàng. \\ \hline
+description & text & Mô tả chi tiết trạng thái. \\ \hline
+updated\_by & varchar & Người cập nhật trạng thái. \\ \hline
+updated\_at & timestamp & Thời điểm cập nhật trạng thái. \\ \hline
+\end{tabular}
+\end{table}

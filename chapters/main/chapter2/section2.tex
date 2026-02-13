@@ -6,14 +6,21 @@
     \caption{Use case Diagram tổng quát}
     \label{fig:usecase_overall}
 \end{figure}
-Các Actor trong Hệ thống bao gồm:
+Các Actor trong hệ thống bao gồm:
 \begin{itemize}[noitemsep]
-    \item Customer: Khách hàng sử dụng website để xem và mua sản phẩm mỹ phẩm, quản lý giỏ hàng, đặt hàng, thanh toán, đánh giá sản phẩm và nhận tư vấn từ AI chatbot cùng phân tích khuôn mặt để gợi ý sản phẩm phù hợp.
+    \item \textbf{UserBase}: 
+    Là actor cơ sở đại diện cho tất cả người dùng của hệ thống. UserBase thực hiện các chức năng xác thực và quản lý tài khoản bao gồm: đăng ký, đăng nhập, đăng xuất và quản lý thông tin cá nhân.
 
-    \item Admin: Quản trị viên hệ thống sử dụng web admin panel để quản lý toàn bộ hệ thống bao gồm danh mục, sản phẩm, đơn hàng, người dùng, vận chuyển, đánh giá, khuyến mãi và thông tin cửa hàng.
+    \item \textbf{Customer}: 
+    Là actor kế thừa từ UserBase, đại diện cho khách hàng đã đăng nhập hệ thống. Customer có thể thực hiện các chức năng: xem giới thiệu cửa hàng, xem sản phẩm và danh mục, quản lý giỏ hàng, quản lý đơn hàng, thanh toán, đánh giá sản phẩm, quản lý địa chỉ liên hệ, liên hệ cửa hàng, sử dụng chatbot AI tư vấn và AI phân tích khuôn mặt để gợi ý sản phẩm phù hợp.
 
-    \item UserBase: Người dùng cơ bản thực hiện các chức năng xác thực như đăng ký tài khoản mới, đăng nhập vào hệ thống, đăng xuất và quản lý thông tin tài khoản cá nhân.
+    \item \textbf{Guest}: 
+    Là actor đại diện cho người dùng chưa đăng nhập. Guest chỉ có thể thực hiện các chức năng cơ bản như: xem giới thiệu cửa hàng, xem sản phẩm và danh mục.
+
+    \item \textbf{Admin}: 
+    Là actor kế thừa từ UserBase, đại diện cho quản trị viên hệ thống. Admin thực hiện các chức năng quản trị bao gồm: quản lý danh mục, quản lý sản phẩm, quản lý đơn hàng, quản lý người dùng, quản lý vận chuyển, quản lý đánh giá, quản lý khuyến mãi và quản lý thông tin cửa hàng.
 \end{itemize}
+
 %----------------------------------------------------------------Đăng nhập đăng ký---------------
 \subsection{Use case Diagram Chức năng xác thực}
 \begin{figure}[H]
@@ -194,76 +201,6 @@ Luồng thay thế &
 \end{tabular}
 \caption{Đặc tả Use Case Quản lý hồ sơ cá nhân}
 \end{table}
-Hệ thống website thương mại điện tử có hai tác nhân chính tham gia vào quá trình sử dụng hệ thống, bao gồm:
-\begin{itemize}
-    \item \textbf{Người mua (Customer)}: Là người sử dụng hệ thống để tìm kiếm, lựa chọn sản phẩm, đặt hàng,
-    thanh toán, theo dõi đơn hàng và đánh giá sản phẩm.
-    \item \textbf{Người bán (Admin/Người quản trị)}: Là người quản lý toàn bộ hoạt động của hệ thống,
-    bao gồm quản lý sản phẩm, đơn hàng, người dùng, xử lý giao hàng và theo dõi doanh thu.
-\end{itemize}
-
-
-\subsection{Các nhóm Use Case chính}
-
-Dựa trên yêu cầu chức năng của hệ thống, các Use Case được phân thành các nhóm chính như sau:
-
-\textbf{a) Nhóm Use Case dành cho người mua}
-
-Nhóm Use Case dành cho người mua bao gồm các chức năng hỗ trợ hoạt động mua sắm trực tuyến,
-nhằm mang lại trải nghiệm thuận tiện và dễ sử dụng cho khách hàng.
-
-Các Use Case chính bao gồm:
-\begin{itemize}
-    \item Đăng ký, đăng nhập hệ thống
-    \item Duyệt và tìm kiếm sản phẩm
-    \item Xem chi tiết sản phẩm
-    \item Quản lý giỏ hàng
-    \item Đặt hàng và thanh toán
-    \item Theo dõi trạng thái đơn hàng
-    \item Đánh giá và nhận xét sản phẩm
-    \item Nhận tư vấn từ chatbot AI và AI gợi ý sản phẩm phù hợp
-\end{itemize}
-
-\textbf{b) Nhóm Use Case dành cho người bán}
-
-Nhóm Use Case dành cho người bán tập trung vào các chức năng quản trị và vận hành hệ thống,
-đảm bảo quá trình bán hàng và chăm sóc khách hàng diễn ra hiệu quả.
-
-Các Use Case chính bao gồm:
-\begin{itemize}
-    \item Quản lý tài khoản người dùng
-    \item Quản lý danh mục và sản phẩm
-    \item Quản lý đơn hàng
-    \item Cập nhật trạng thái giao hàng
-    \item Quản lý phương thức thanh toán
-    \item Theo dõi thống kê doanh thu và báo cáo tổng hợp
-    \item Quản lý đánh giá và phản hồi từ khách hàng
-\end{itemize}
-
-\subsection{Sơ đồ Use Case tổng quát của hệ thống}
-
-Sơ đồ Use Case tổng quát thể hiện mối quan hệ giữa các tác nhân và các chức năng chính của hệ thống website thương mại điện tử.
-Thông qua sơ đồ, có thể thấy rõ phạm vi chức năng của hệ thống cũng như trách nhiệm của từng tác nhân.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.95\textwidth]{graphics/front/tmdt.drawio.png}
-%     \caption{Sơ đồ Use Case tổng quát của website thương mại điện tử}
-%     \label{fig:usecase}
-% \end{figure}
-
-\subsection{Nhận xét}
-
-Từ sơ đồ Use Case, có thể nhận thấy hệ thống đáp ứng đầy đủ các yêu cầu chức năng đã được đề cập trong phần
-đặc tả yêu cầu hệ thống. Việc phân chia rõ ràng các Use Case theo từng tác nhân giúp hệ thống
-dễ dàng mở rộng, bảo trì và phát triển trong tương lai.
-
-
-
-
-
-
-
 
 \subsection{Use case Diagram chi tiết về xử lý thanh toán}
 \begin{figure}[H]
@@ -569,7 +506,7 @@ Luồng thay thế &
 \end{figure}
 
 %đặc tả Gửi tin nhắn hỏi đáp
-\subsubsection{Đặc tả Use Case Gửi tin nhắn hỏi đáp}
+\subsubsection{Đặc tả Use Case ChatbotAI tư vấn sản phẩm}
 
 \begin{table}[H]
 \centering
@@ -610,7 +547,7 @@ Luồng thay thế &
 - Lỗi kết nối đến Ollama → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Gửi tin nhắn hỏi đáp}
+\caption{Đặc tả Use Case ChatbotAI tư vấn sản phẩm}
 \end{table}
 
 % usecase Quản lý cửa hàng
