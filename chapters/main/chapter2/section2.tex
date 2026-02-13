@@ -34,6 +34,7 @@ Các Actor trong hệ thống bao gồm:
 \subsubsection{Đặc tả Use Case Đăng ký tài khoản}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Đăng ký tài khoản}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -72,13 +73,14 @@ Luồng thay thế &
 - Email đã tồn tại → hệ thống hiển thị "Email đã được sử dụng". \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Đăng ký tài khoản}
+
 \end{table}
 
 %đặc tả Đăng nhập
 \subsubsection{Đặc tả Use Case Đăng nhập}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Đăng nhập}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -120,13 +122,14 @@ Luồng thay thế &
 - Tài khoản bị khóa → hệ thống thông báo liên hệ admin. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Đăng nhập}
+
 \end{table}
 
 %đặc tả Đăng xuất
 \subsubsection{Đặc tả Use Case Đăng xuất}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Đăng xuất}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -158,13 +161,14 @@ Luồng thay thế &
 Không có. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Đăng xuất}
+
 \end{table}
 
 %đặc tả Quản lý hồ sơ cá nhân
 \subsubsection{Đặc tả Use Case Quản lý hồ sơ cá nhân}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Quản lý hồ sơ cá nhân}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -199,7 +203,7 @@ Luồng thay thế &
 - Mật khẩu cũ không đúng → hệ thống từ chối đổi mật khẩu. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Quản lý hồ sơ cá nhân}
+
 \end{table}
 
 \subsection{Use case Diagram chi tiết về xử lý thanh toán}
@@ -209,7 +213,7 @@ Luồng thay thế &
     \caption{Use case Diagram xử lý thanh toán}
     \label{fig:usecase_payment}
 \end{figure}
-Dưới đây là các đặc tả use case của quy trình thanh toán qua cổng VNPAY.
+
 \begin{table}[H]
 \centering
 \caption{Đặc tả Use Case: Thanh toán khi nhận hàng (COD)}
@@ -405,6 +409,7 @@ Luồng thay thế &
 \subsubsection{Đặc tả Use Case Quản lý đánh giá sản phẩm}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Quản lý đánh giá sản phẩm (Admin)}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -436,7 +441,7 @@ Luồng thay thế &
 Nếu xảy ra lỗi hệ thống hoặc không tìm thấy đánh giá, hệ thống hiển thị thông báo lỗi và không thực hiện thay đổi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Quản lý đánh giá sản phẩm (Admin)}
+
 \end{table}
 
 % usecase khách hàng đánh giá sản phẩm 
@@ -452,6 +457,7 @@ Nếu xảy ra lỗi hệ thống hoặc không tìm thấy đánh giá, hệ th
 \subsubsection{Đặc tả Use Case Khách hàng đánh giá sản phẩm}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Khách hàng đánh giá sản phẩm}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -493,7 +499,7 @@ Luồng thay thế &
 - Ảnh/video sai định dạng → báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Khách hàng đánh giá sản phẩm}
+
 \end{table}
 
 % usecase ChatbotAI tư vấn sản phẩm 
@@ -509,6 +515,7 @@ Luồng thay thế &
 \subsubsection{Đặc tả Use Case ChatbotAI tư vấn sản phẩm}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case ChatbotAI tư vấn sản phẩm}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -547,7 +554,7 @@ Luồng thay thế &
 - Lỗi kết nối đến Ollama → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case ChatbotAI tư vấn sản phẩm}
+
 \end{table}
 
 % usecase Quản lý cửa hàng
@@ -563,6 +570,7 @@ Luồng thay thế &
 \subsubsection{Đặc tả Use Case Cập nhật thông tin cửa hàng}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Cập nhật thông tin cửa hàng}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -600,13 +608,14 @@ Luồng thay thế &
 - Không tìm thấy cửa hàng → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Cập nhật thông tin cửa hàng}
+
 \end{table}
 
 %đặc tả Quản lý địa chỉ cửa hàng
 \subsubsection{Đặc tả Use Case Quản lý địa chỉ cửa hàng}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Quản lý địa chỉ cửa hàng}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -641,13 +650,14 @@ Luồng thay thế &
 - Không tìm thấy địa chỉ cần sửa/xóa → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Quản lý địa chỉ cửa hàng}
+
 \end{table}
 
 %đặc tả Xem giới thiệu cửa hàng
 \subsubsection{Đặc tả Use Case Xem giới thiệu cửa hàng}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Xem giới thiệu cửa hàng}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -679,13 +689,14 @@ Luồng thay thế &
 - Lỗi tải dữ liệu → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Xem giới thiệu cửa hàng}
+
 \end{table}
 
 %đặc tả Liên hệ cửa hàng
 \subsubsection{Đặc tả Use Case Liên hệ cửa hàng}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Liên hệ cửa hàng}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -717,7 +728,7 @@ Luồng thay thế &
 - Lỗi tải dữ liệu → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Liên hệ cửa hàng}
+
 \end{table}
 
 % usecase Quản lý vận chuyển 
@@ -733,6 +744,7 @@ Luồng thay thế &
 \subsubsection{Đặc tả Use Case Xem phương thức vận chuyển}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Xem phương thức vận chuyển}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -765,13 +777,14 @@ Luồng thay thế &
 - Lỗi tải dữ liệu → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Xem phương thức vận chuyển}
+
 \end{table}
 
 %đặc tả Tính phí theo khoảng cách
 \subsubsection{Đặc tả Use Case Tính phí theo khoảng cách}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Tính phí theo khoảng cách}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -806,13 +819,14 @@ Luồng thay thế &
 - Địa chỉ giao hàng không hợp lệ → hệ thống yêu cầu nhập lại. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Tính phí theo khoảng cách}
+
 \end{table}
 
 %đặc tả Cập nhật trạng thái vận chuyển
 \subsubsection{Đặc tả Use Case Cập nhật trạng thái vận chuyển}
 
 \begin{table}[H]
+    \caption{Đặc tả Use Case Cập nhật trạng thái vận chuyển}
 \centering
 \renewcommand{\arraystretch}{1.3}
 \begin{tabular}{|p{4cm}|p{10cm}|}
@@ -852,5 +866,5 @@ Luồng thay thế &
 - Không tìm thấy đơn hàng → hệ thống thông báo lỗi. \\ \hline
 
 \end{tabular}
-\caption{Đặc tả Use Case Cập nhật trạng thái vận chuyển}
+
 \end{table}
