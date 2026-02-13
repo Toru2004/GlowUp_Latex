@@ -41,6 +41,110 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
     \item Build production: npm run build
 \end{enumerate}
 
+\subsection{Thiết kế hệ thống}
+
+\noindent \textbf{a) Kiến trúc source Front End}
+
+\noindent Hệ thống Front End của GlowUp được thiết kế theo kiến trúc hiện đại, tập trung vào tính mô-đun, khả năng tái sử dụng và hiệu năng tối ưu. Ứng dụng được xây dựng dựa trên framework Nuxt 3, tận dụng tối đa các tính năng của Vue.js 3 và hệ sinh thái liên quan.
+
+\begin{itemize}
+    \item \textbf{Tổng quan về Framework Nuxt 3}:
+    Hệ thống sử dụng Nuxt 3 (phiên bản 3.17.7) với chế độ Single Page Application (SPA) cho trang Admin và Render đa dạng cho người dùng. Các tính năng cốt lõi được áp dụng bao gồm:
+    \begin{itemize}
+        \item \textbf{File-based Routing}: Tự động tạo route dựa trên cấu trúc thư mục \textbf{pages/}, giúp quản lý điều hướng minh bạch.
+        \begin{itemize}
+            \item \textbf{pages/home}: Trang chủ hiển thị sản phẩm.
+            \item \textbf{pages/admin}: Các trang quản trị điều khiển và thống kê.
+            \item \textbf{pages/auth}: Các trang đăng nhập, đăng ký và lấy lại mật khẩu.
+        \end{itemize}
+        \item \textbf{Auto-imports}: Tự động nạp các Component, Composable và hàm từ thư viện, giúp mã nguồn gọn gàng và tăng tốc độ phát triển.
+    \end{itemize}
+
+    \item \textbf{Cơ chế Quản lý Trạng thái (State Management)}:
+    Ứng dụng kết hợp linh hoạt giữa State nội bộ và State toàn cục:
+    \begin{itemize}
+        \item \textbf{Vue State (\textbf{useState})}: Được dùng để duy trì trạng thái đồng nhất giữa Server-Side Rendering và Client-Side Rendering, cụ thể là quản lý thông tin phiên đăng nhập (\textbf{auth\_token}) và giỏ hàng (\textbf{cart\_state}) trong suốt vòng đời ứng dụng.
+        \item \textbf{Pinia Store}: Sử dụng để quản lý các logic UI phức tạp hoặc dữ liệu cần lưu trữ lâu dài thông qua plugin \textbf{pinia-plugin-persistedstate}, đảm bảo trải nghiệm người dùng không bị gián đoạn khi tải lại trang.
+    \end{itemize}
+
+    \item \textbf{Lớp Dịch vụ API (API Service Layer)}:
+    Để tương tác với Backend một cách hiệu quả và bảo mật, hệ thống triển khai lớp \texttt{useApi}:
+    \begin{itemize}
+        \item \textbf{Tự động xác thực}: Mọi request gửi đi đều được tự động nhúng JWT Token vào Header (\textbf{Authorization: Bearer <token>}) nếu người dùng đã đăng nhập.
+        \item \textbf{Xử lý tập trung}: Các phương thức \textbf{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp dễ dàng bảo trì và thay đổi URL API tại file cấu hình \textbf{nuxt.config.ts}.
+    \end{itemize}
+
+    \item \textbf{Bảo mật và Kiểm soát Quyền truy cập}:
+    Hệ thống triển khai cơ chế Middleware toàn cục (\textbf{auth.global.ts}) để bảo vệ tài nguyên:
+    \begin{itemize}
+        \item \textbf{Navigation Guards}: Kiểm tra trạng thái đăng nhập trước khi truy cập bất kỳ route nào (ngoại trừ trang Auth).
+        \item \textbf{Role-based Access Control (RBAC)}: Phân định rõ ràng quyền hạn giữa \textit{Admin} (truy cập Dashboard, quản lý hệ thống) và \textit{Customer} (quản lý giỏ hàng, đặt hàng cá nhân). Người dùng không có quyền sẽ tự động bị điều hướng về trang đăng nhập.
+    \end{itemize}
+
+    \item \textbf{Tổ chức Mã nguồn và Công nghệ bổ trợ}:
+    \begin{itemize}
+        \item \textbf{Giao diện (\textbf{components/})}: Chia nhỏ UI thành các Atomic Component có tính tái sử dụng cực cao.
+        \item \textbf{Composables (\textbf{logic/})}: Tách biệt hoàn toàn logic nghiệp vụ (ví dụ: \textbf{useOrder}, \textbf{useCart}) ra khỏi giao diện, tuân thủ nguyên lý Separation of Concerns.
+        \item \textbf{Hệ sinh thái đi kèm}: Sử dụng Tailwind CSS để tối ưu hóa việc viết mã giao diện; Leaflet cho các tính năng địa lý và Chart.js cho các báo cáo trực quan.
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{b) Kiến trúc source Back End}
+
+\noindent Backend của hệ thống GlowUp được xây dựng dựa trên nền tảng Node.js và framework Express.js theo kiến trúc RESTful API. Hệ thống được tổ chức theo mô hình kiến trúc phân tầng (Layered Architecture) và module hóa, giúp phân tách rõ ràng trách nhiệm giữa các thành phần.
+
+\begin{itemize}
+    \item \textbf{Cấu trúc tổng quan và Cấu trúc thư mục}:
+    Hệ thống được thiết kế theo các tầng (Layers) đảm nhận các vai trò riêng biệt, kết nối chặt chẽ với nhau:
+    \begin{itemize}
+        \item \textbf{Routes}: Định nghĩa các endpoint API và điều hướng request.
+        \item \textbf{Controllers}: Tiếp nhận và xử lý request/response, điều phối luồng dữ liệu.
+        \item \textbf{Services}: Nơi tập trung toàn bộ logic nghiệp vụ (Business Logic) và tính toán.
+        \item \textbf{Models}: Đại diện cho cấu trúc dữ liệu và thực hiện tương tác với Database.
+        \item \textbf{Middlewares}: Xử lý các tác vụ xuyên suốt như xác thực, phân quyền và bắt lỗi.
+    \end{itemize}
+
+    \item \textbf{Sơ đồ cấu trúc thư mục chính của dự án (\textbf{src/})}:
+    \begin{itemize}[noitemsep, topsep=0pt]
+        \item \textbf{src/}: Thư mục chứa toàn bộ mã nguồn của hệ thống Backend.
+        \begin{itemize}[noitemsep]
+            \item \textbf{config/}: Quản lý các cấu hình quan trọng như DB và biến môi trường.
+            \item \textbf{controllers/}: Tiếp nhận và xử lý request/response.
+            \item \textbf{middlewares/}: Xử lý xác thực, phân quyền và bắt lỗi.
+            \item \textbf{models/}: Định nghĩa lược đồ dữ liệu và tương tác DB.
+            \item \textbf{routes/}: Khai báo các API endpoint.
+            \item \textbf{scripts/}: Các script hỗ trợ hoặc migrate dữ liệu.
+            \item \textbf{services/}: Xử lý logic nghiệp vụ chính.
+            \item \textbf{uploads/}: Lưu trữ tệp tin đa phương tiện.
+            \item \textbf{app.js}: File khởi động chính của hệ thống.
+        \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Mô tả chức năng chi tiết các thành phần}:
+    \begin{itemize}
+        \item \textbf{config/}: Quản lý các cấu hình quan trọng như kết nối cơ sở dữ liệu và biến môi trường. Việc tách biệt giúp việc thay đổi môi trường triển khai (Dev, Staging, Production) trở nên dễ dàng và an toàn.
+        \item \textbf{controllers/}: Đóng vai trò lớp trung gian, nhận dữ liệu từ Client qua Route, gọi đến Service tương ứng và trả về kết quả theo định dạng JSON. Mỗi controller tương ứng với một nhóm chức năng (Người dùng, Sản phẩm, Đơn hàng...).
+        \item \textbf{services/}: Đây là "trái tim" của hệ thống, chứa các thuật toán và logic xử lý chính. Việc tách Service giúp tránh trùng lặp mã nguồn (DRY), dễ dàng viết Unit Test và có thể tái sử dụng ở nhiều nơi khác nhau.
+        \item \textbf{models/}: Ánh xạ các đối tượng nghiệp vụ vào cơ sở dữ liệu (MongoDB/PostgreSQL). Tầng này đảm bảo tính nhất quán và toàn vẹn dữ liệu trước khi được lưu trữ.
+        \item \textbf{middlewares/}: Cung cấp các "chốt chặn" bảo mật, kiểm tra tính hợp lệ của Token JWT trước khi cho phép truy cập tài nguyên nhạy cảm và tập trung xử lý mọi lỗi phát sinh để trả về thông báo thống nhất.
+        \item \textbf{uploads/}: Khu vực lưu trữ vật lý các dữ liệu đa phương tiện như ảnh đại diện, ảnh sản phẩm hoặc các tài liệu liên quan đến hỗ trợ khách hàng.
+    \end{itemize}
+
+    \item \textbf{Các tệp tin cấu hình then chốt}:
+    \begin{itemize}
+        \item \textbf{\textbf{app.js}}: Là điểm nhập (Entry Point) duy nhất của hệ thống Backend. Tệp này có nhiệm vụ khởi tạo ứng dụng Express, thiết lập các middleware toàn cục (CORS, Body-parser), đăng ký hệ thống route và thiết lập kết nối đến máy chủ cơ sở dữ liệu.
+        \item \textbf{\textbf{.env}}: Tệp lưu trữ các tham số môi trường dưới dạng key-value. Việc không lưu trực tiếp các bí mật (API Key, Database URL) vào mã nguồn giúp ngăn ngừa rò rỉ thông tin quan trọng khi quản lý qua Git.
+    \end{itemize}
+
+    \item \textbf{Ưu điểm của Kiến trúc GlowUp}:
+    Việc áp dụng kiến trúc phân tầng mang lại các lợi ích vượt trội:
+    \begin{itemize}
+        \item \textbf{Separation of Concerns}: Phân tách rõ ràng trách nhiệm giúp đội ngũ phát triển dễ dàng định vị và sửa lỗi.
+        \item \textbf{Scalability}: Dễ dàng mở rộng thêm các tính năng mới bằng cách thêm Controller và Service mới mà không phá vỡ cấu trúc hiện tại.
+        \item \textbf{Maintainability}: Mã nguồn sạch, có tổ chức giúp việc nâng cấp và bảo trì hệ thống lâu dài đạt hiệu quả cao.
+    \end{itemize}
+\end{itemize}
+
 \subsection{Khởi động Hệ thống}
 \begin{enumerate}[noitemsep]
     \item Khởi động SQL Server
