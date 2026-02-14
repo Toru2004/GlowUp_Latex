@@ -193,28 +193,28 @@ Quy trình lặp lại cho đến khi khách hàng không tiếp tục đặt c�
 
 \textbf{Mục đích:}
 
-Chức năng theo dõi và cập nhật trạng thái vận chuyển cho phép quản trị viên (Admin) giám sát tiến trình giao hàng, cập nhật trạng thái đơn vận chuyển và thông báo đến khách hàng. Chức năng này giúp đảm bảo thông tin giao hàng luôn chính xác, minh bạch và kịp thời.
+Chức năng theo dõi và cập nhật trạng thái vận chuyển cho phép Admin giám sát tiến trình giao hàng, cập nhật trạng thái đơn vận chuyển và thông báo đến khách hàng. Chức năng này giúp đảm bảo thông tin giao hàng luôn chính xác, minh bạch và kịp thời.
 
 \textbf{Luồng hoạt động:}
 
-Quản trị viên bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
+Admin bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
 
 \begin{itemize}
     \item Hệ thống tải danh sách các đơn vận chuyển từ cơ sở dữ liệu.
     
     \item Danh sách đơn được hiển thị kèm trạng thái hiện tại của từng đơn.
     
-    \item Quản trị viên chọn đơn vận chuyển cần xem chi tiết.
+    \item Admin chọn đơn vận chuyển cần xem chi tiết.
     
     \item Hệ thống tải và hiển thị thông tin chi tiết đơn vận chuyển, bao gồm mã đơn, thông tin khách hàng, địa chỉ giao hàng, shipper phụ trách và trạng thái hiện tại.
 \end{itemize}
 
-Sau khi xem thông tin, quản trị viên có thể quyết định cập nhật trạng thái vận chuyển.
+Sau khi xem thông tin, Admin có thể quyết định cập nhật trạng thái vận chuyển.
 
 \begin{itemize}
     \item Nếu không cập nhật trạng thái, quy trình kết thúc.
     
-    \item Nếu cập nhật, quản trị viên chọn trạng thái mới cho đơn vận chuyển.
+    \item Nếu cập nhật, Admin chọn trạng thái mới cho đơn vận chuyển.
 \end{itemize}
 
 \begin{itemize}
@@ -232,10 +232,10 @@ Sau khi cập nhật thành công:
 \begin{itemize}
     \item Hệ thống gửi thông báo đến khách hàng về trạng thái mới của đơn hàng.
     
-    \item Hệ thống hiển thị thông báo cập nhật thành công cho quản trị viên.
+    \item Hệ thống hiển thị thông báo cập nhật thành công cho Admin.
 \end{itemize}
 
-Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi quản trị viên không thực hiện thay đổi.
+Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi Admin không thực hiện thay đổi.
 
 
 \subsection{Activity Diagram Quản lý vận chuyển}
@@ -250,28 +250,28 @@ Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi qu
 
 \textbf{Mục đích:}
 
-Chức năng quản lý vận chuyển cho phép quản trị viên (Admin) theo dõi, kiểm soát và cập nhật trạng thái vận chuyển của các đơn hàng. Thông qua chức năng này, hệ thống hỗ trợ quản lý lịch sử giao hàng, đảm bảo thông tin vận chuyển được cập nhật chính xác và kịp thời.
+Chức năng quản lý vận chuyển cho phép Admin  theo dõi, kiểm soát và cập nhật trạng thái vận chuyển của các đơn hàng. Thông qua chức năng này, hệ thống hỗ trợ quản lý lịch sử giao hàng, đảm bảo thông tin vận chuyển được cập nhật chính xác và kịp thời.
 
 \textbf{Luồng hoạt động:}
 
-Quản trị viên bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
+Admin bắt đầu bằng việc mở trang quản lý vận chuyển trên hệ thống.
 
 \begin{itemize}
     \item Hệ thống tải danh sách các đơn vận chuyển từ cơ sở dữ liệu.
     
-    \item Danh sách đơn vận chuyển được hiển thị để quản trị viên lựa chọn.
+    \item Danh sách đơn vận chuyển được hiển thị để Admin lựa chọn.
     
-    \item Quản trị viên chọn một đơn hàng cần quản lý.
+    \item Admin chọn một đơn hàng cần quản lý.
     
     \item Hệ thống lấy lịch sử theo dõi (tracking) của đơn hàng và hiển thị chi tiết đơn hàng kèm các trạng thái đã cập nhật trước đó.
 \end{itemize}
 
-Sau khi xem thông tin, quản trị viên có thể quyết định cập nhật trạng thái vận chuyển.
+Sau khi xem thông tin, Admin có thể quyết định cập nhật trạng thái vận chuyển.
 
 \begin{itemize}
     \item Nếu không cập nhật trạng thái, quy trình kết thúc.
     
-    \item Nếu cập nhật trạng thái, quản trị viên thực hiện các bước sau:
+    \item Nếu cập nhật trạng thái, Admin thực hiện các bước sau:
     \begin{itemize}
         \item Chọn trạng thái vận chuyển mới.
         
@@ -289,7 +289,7 @@ Sau khi xem thông tin, quản trị viên có thể quyết định cập nhậ
     \item Nếu thông tin hợp lệ, hệ thống tạo bản ghi theo dõi vận chuyển mới trong cơ sở dữ liệu và hiển thị thông báo cập nhật thành công.
 \end{itemize}
 
-Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi quản trị viên không thực hiện thay đổi.
+Quy trình kết thúc sau khi trạng thái được cập nhật hoặc khi Admin không thực hiện thay đổi.
 
 \subsection{Activity Diagram Quản lý hồ sơ cá nhân}
 
@@ -372,11 +372,11 @@ Quy trình kết thúc sau khi thao tác cập nhật hoàn tất hoặc khi ng�
 
 \textbf{Mục đích:}
 
-Chức năng quản lý cửa hàng cho phép quản trị viên (Admin) cập nhật thông tin của Shop, bao gồm thông tin mô tả và vị trí trên bản đồ. Chức năng này giúp đảm bảo dữ liệu cửa hàng luôn chính xác, hỗ trợ khách hàng tìm kiếm và liên hệ thuận tiện hơn.
+Chức năng quản lý cửa hàng cho phép Admin cập nhật thông tin của Shop, bao gồm thông tin mô tả và vị trí trên bản đồ. Chức năng này giúp đảm bảo dữ liệu cửa hàng luôn chính xác, hỗ trợ khách hàng tìm kiếm và liên hệ thuận tiện hơn.
 
 \textbf{Luồng hoạt động:}
 
-Quản trị viên bắt đầu bằng việc mở trang quản lý Shop trên hệ thống.
+Admin bắt đầu bằng việc mở trang quản lý Shop trên hệ thống.
 
 \begin{itemize}
     \item Hệ thống tải thông tin Shop từ cơ sở dữ liệu.
@@ -384,27 +384,27 @@ Quản trị viên bắt đầu bằng việc mở trang quản lý Shop trên h
     \item Thông tin hiện tại của Shop được hiển thị dưới dạng biểu mẫu chỉnh sửa kèm bản đồ vị trí.
 \end{itemize}
 
-Tại trang này, quản trị viên có thể lựa chọn một trong hai loại cập nhật:
+Tại trang này, Admin có thể lựa chọn một trong hai loại cập nhật:
 
 \begin{itemize}
     \item \textbf{Cập nhật thông tin chữ:}
     \begin{itemize}
-        \item Quản trị viên chỉnh sửa các thông tin như tên Shop, mô tả, số điện thoại liên hệ, v.v.
+        \item Admin chỉnh sửa các thông tin như tên Shop, mô tả, số điện thoại liên hệ, v.v.
     \end{itemize}
     
     \item \textbf{Cập nhật vị trí trên bản đồ:}
     \begin{itemize}
-        \item Quản trị viên tìm kiếm địa chỉ trên bản đồ.
+        \item Admin tìm kiếm địa chỉ trên bản đồ.
         
         \item Hệ thống hiển thị kết quả vị trí tương ứng.
         
-        \item Quản trị viên chọn (chấm) vị trí Shop trên bản đồ.
+        \item Admin chọn (chấm) vị trí Shop trên bản đồ.
         
         \item Hệ thống lấy tọa độ địa lý (vĩ độ, kinh độ) từ điểm được chọn.
     \end{itemize}
 \end{itemize}
 
-Sau khi hoàn tất chỉnh sửa, quản trị viên xác nhận cập nhật.
+Sau khi hoàn tất chỉnh sửa, Admin xác nhận cập nhật.
 
 \begin{itemize}
     \item Hệ thống kiểm tra tính hợp lệ của thông tin đã nhập.
