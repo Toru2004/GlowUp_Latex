@@ -29,8 +29,8 @@ Hệ thống sử dụng Microsoft SQL Server LocalDB để lưu trữ dữ li�
     \item Authentication: Windows Authentication
 \end{itemize}
 
-\subsection{Frontend - Nuxt 3.4}
-Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js cho server-side rendering.
+\subsection{Frontend - Nuxt}
+Frontend được phát triển với Nuxt.js, framework Vue.js cho server-side rendering.
 
 \textbf{Các bước cài đặt:}
 \begin{enumerate}[noitemsep]
@@ -71,14 +71,14 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
     Để tương tác với Backend một cách hiệu quả và bảo mật, hệ thống triển khai lớp \texttt{useApi}:
     \begin{itemize}
         \item \textbf{Tự động xác thực}: Mọi request gửi đi đều được tự động nhúng JWT Token vào Header (\textbf{Authorization: Bearer <token>}) nếu người dùng đã đăng nhập.
-        \item \textbf{Xử lý tập trung}: Các phương thức \textbf{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp dễ dàng bảo trì và thay đổi URL API tại file cấu hình \textbf{nuxt.config.ts}.
+        \item \textbf{Xử lý tập trung}: Các phương thức \textbf{GET, POST, PUT, DELETE} được đóng gói trong Composable, giúp thuận tiện bảo trì và thay đổi URL API tại file cấu hình \textbf{nuxt.config.ts}.
     \end{itemize}
 
     \item \textbf{Bảo mật và Kiểm soát Quyền truy cập}:
     Hệ thống triển khai cơ chế Middleware toàn cục (\textbf{auth.global.ts}) để bảo vệ tài nguyên:
     \begin{itemize}
         \item \textbf{Navigation Guards}: Kiểm tra trạng thái đăng nhập trước khi truy cập bất kỳ route nào (ngoại trừ trang Auth).
-        \item \textbf{Role-based Access Control (RBAC)}: Phân định rõ ràng quyền hạn giữa \textit{Admin} (truy cập Dashboard, quản lý hệ thống) và \textit{Customer} (quản lý giỏ hàng, đặt hàng cá nhân). Người dùng không có quyền sẽ tự động bị điều hướng về trang đăng nhập.
+        \item \textbf{Role-based Access Control }: Phân định cụ thể quyền hạn giữa \textit{Admin} (truy cập Dashboard, quản lý hệ thống) và \textit{Customer} (quản lý giỏ hàng, đặt hàng cá nhân). Người dùng không có quyền sẽ tự động bị điều hướng về trang đăng nhập.
     \end{itemize}
 
     \item \textbf{Tổ chức Mã nguồn và Công nghệ bổ trợ}:
@@ -91,7 +91,7 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
 
 \noindent \textbf{b) Kiến trúc source Back End}
 
-\noindent Backend của hệ thống GlowUp được xây dựng dựa trên nền tảng Node.js và framework Express.js theo kiến trúc RESTful API. Hệ thống được tổ chức theo mô hình kiến trúc phân tầng (Layered Architecture) và module hóa, giúp phân tách rõ ràng trách nhiệm giữa các thành phần.
+\noindent Backend của hệ thống GlowUp được xây dựng dựa trên nền tảng Node.js và framework Express.js theo kiến trúc RESTful API. Hệ thống được tổ chức theo mô hình kiến trúc phân tầng (Layered Architecture) và module hóa, giúp phân tách cụ thể trách nhiệm giữa các thành phần.
 
 \begin{itemize}
     \item \textbf{Cấu trúc tổng quan và Cấu trúc thư mục}:
@@ -122,9 +122,9 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
 
     \item \textbf{Mô tả chức năng chi tiết các thành phần}:
     \begin{itemize}
-        \item \textbf{config/}: Quản lý các cấu hình quan trọng như kết nối cơ sở dữ liệu và biến môi trường. Việc tách biệt giúp việc thay đổi môi trường triển khai (Dev, Staging, Production) trở nên dễ dàng và an toàn.
+        \item \textbf{config/}: Quản lý các cấu hình quan trọng như kết nối cơ sở dữ liệu và biến môi trường. Việc tách biệt giúp việc thay đổi môi trường triển khai (Dev, Staging, Production) trở nên thuận tiện và an toàn.
         \item \textbf{controllers/}: Đóng vai trò lớp trung gian, nhận dữ liệu từ Client qua Route, gọi đến Service tương ứng và trả về kết quả theo định dạng JSON. Mỗi controller tương ứng với một nhóm chức năng (Người dùng, Sản phẩm, Đơn hàng...).
-        \item \textbf{services/}: Đây là "trái tim" của hệ thống, chứa các thuật toán và logic xử lý chính. Việc tách Service giúp tránh trùng lặp mã nguồn (DRY), dễ dàng viết Unit Test và có thể tái sử dụng ở nhiều nơi khác nhau.
+        \item \textbf{services/}: Đây là "trái tim" của hệ thống, chứa các thuật toán và logic xử lý chính. Việc tách Service giúp tránh trùng lặp mã nguồn (DRY), thuận tiện viết Unit Test và có thể tái sử dụng ở nhiều nơi khác nhau.
         \item \textbf{models/}: Ánh xạ các đối tượng nghiệp vụ vào cơ sở dữ liệu (MongoDB/PostgreSQL). Tầng này đảm bảo tính nhất quán và toàn vẹn dữ liệu trước khi được lưu trữ.
         \item \textbf{middlewares/}: Cung cấp các "chốt chặn" bảo mật, kiểm tra tính hợp lệ của Token JWT trước khi cho phép truy cập tài nguyên nhạy cảm và tập trung xử lý mọi lỗi phát sinh để trả về thông báo thống nhất.
         \item \textbf{uploads/}: Khu vực lưu trữ vật lý các dữ liệu đa phương tiện như ảnh đại diện, ảnh sản phẩm hoặc các tài liệu liên quan đến hỗ trợ khách hàng.
@@ -139,8 +139,8 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
     \item \textbf{Ưu điểm của Kiến trúc GlowUp}:
     Việc áp dụng kiến trúc phân tầng mang lại các lợi ích vượt trội:
     \begin{itemize}
-        \item \textbf{Separation of Concerns}: Phân tách rõ ràng trách nhiệm giúp đội ngũ phát triển dễ dàng định vị và sửa lỗi.
-        \item \textbf{Scalability}: Dễ dàng mở rộng thêm các tính năng mới bằng cách thêm Controller và Service mới mà không phá vỡ cấu trúc hiện tại.
+        \item \textbf{Separation of Concerns}: Phân tách cụ thể trách nhiệm giúp đội ngũ phát triển thuận tiện định vị và sửa lỗi.
+        \item \textbf{Scalability}: thuận tiện mở rộng thêm các tính năng mới bằng cách thêm Controller và Service mới mà không phá vỡ cấu trúc hiện tại.
         \item \textbf{Maintainability}: Mã nguồn sạch, có tổ chức giúp việc nâng cấp và bảo trì hệ thống lâu dài đạt hiệu quả cao.
     \end{itemize}
 \end{itemize}

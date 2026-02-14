@@ -363,7 +363,7 @@ Sequence diagram này mô tả quy trình khách hàng tra cứu và theo dõi t
 
 \subsubsection{Mục đích}
 
-Sequence diagram này mô tả quy trình quản lý vận chuyển đơn hàng từ phía quản trị viên (Admin). Sơ đồ thể hiện cách Admin xem danh sách đơn vận chuyển, xem chi tiết lịch sử trạng thái và cập nhật trạng thái vận chuyển của đơn hàng trong hệ thống.
+Sequence diagram này mô tả quy trình quản lý vận chuyển đơn hàng từ phía Admin. Sơ đồ thể hiện cách Admin xem danh sách đơn vận chuyển, xem chi tiết lịch sử trạng thái và cập nhật trạng thái vận chuyển của đơn hàng trong hệ thống.
 
 \subsubsection{Mô tả luồng hoạt động}
 
@@ -472,14 +472,14 @@ Sequence diagram này mô tả quy trình quản lý thông tin cá nhân của 
 
 \subsubsection{Mục đích}
 
-Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Shop) của quản trị viên (Admin). Sơ đồ thể hiện cách Admin xem thông tin hiện tại của cửa hàng, chỉnh sửa dữ liệu và cập nhật lại vào hệ thống, bao gồm cả thông tin mô tả và vị trí trên bản đồ.
+Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Shop) của Admin. Sơ đồ thể hiện cách Admin xem thông tin hiện tại của cửa hàng, chỉnh sửa dữ liệu và cập nhật lại vào hệ thống, bao gồm cả thông tin mô tả và vị trí trên bản đồ.
 
 \subsubsection{Mô tả luồng hoạt động}
 
 \textbf{Xem thông tin cửa hàng}
 
 \begin{enumerate}[noitemsep]
-    \item Quản trị viên truy cập trang quản lý Shop
+    \item Admin truy cập trang quản lý Shop
     \item Hệ thống truy xuất thông tin cửa hàng từ cơ sở dữ liệu
     \item Thông tin Shop được hiển thị dưới dạng biểu mẫu chỉnh sửa kèm bản đồ vị trí
 \end{enumerate}
@@ -487,7 +487,7 @@ Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Sho
 \textbf{Chỉnh sửa thông tin cửa hàng}
 
 \begin{enumerate}[noitemsep]
-    \item Quản trị viên cập nhật các thông tin cần thay đổi như:
+    \item Admin cập nhật các thông tin cần thay đổi như:
     \begin{itemize}[noitemsep]
         \item Tên cửa hàng
         \item Mô tả
@@ -495,7 +495,7 @@ Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Sho
         \item Vị trí trên bản đồ
     \end{itemize}
     
-    \item Quản trị viên xác nhận cập nhật
+    \item Admin xác nhận cập nhật
 \end{enumerate}
 
 \textbf{Xử lý cập nhật}
@@ -506,7 +506,7 @@ Sequence diagram này mô tả quy trình quản lý thông tin cửa hàng (Sho
     \item Nếu thông tin không hợp lệ:
     \begin{itemize}[noitemsep]
         \item Hệ thống trả về thông báo lỗi
-        \item Quản trị viên cần chỉnh sửa lại thông tin
+        \item Admin cần chỉnh sửa lại thông tin
     \end{itemize}
     
     \item Nếu thông tin hợp lệ:
