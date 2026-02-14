@@ -1,45 +1,91 @@
 \section{Cài đặt Hệ thống}
+\subsection{Backend}
+Backend được xây dựng bằng Express.js trên nền tảng Node.js, đóng vai trò trung tâm trong kiến trúc hệ thống. Thành phần này chịu trách nhiệm xử lý các yêu cầu từ phía người dùng, quản lý nghiệp vụ, xác thực, phân quyền và kết nối với các dịch vụ như cơ sở dữ liệu, AI Service và hệ thống thanh toán.
 
-\subsection{Yêu cầu hệ thống}
+\textbf{Cài đặt:}
 \begin{itemize}[noitemsep]
-    \item Node.js phiên bản 18.x trở lên
-    \item Microsoft SQL Server LocalDB
-    \item NPM 
+    \item Cài đặt các thư viện và gói phụ thuộc cần thiết cho backend.
+    \item Cấu hình các biến môi trường và thông tin kết nối cơ sở dữ liệu.
+    \item Thực hiện migration để khởi tạo cấu trúc dữ liệu.
+    \item Khởi động server và kiểm tra các API cơ bản.
+    \item Khởi động server và kiểm tra các API tại địa chỉ localhost cổng 8081.
 \end{itemize}
+\subsection{Frontend}
+Frontend được xây dựng bằng Nuxt 3.4 nhằm phát triển giao diện người dùng thân thiện, hỗ trợ hiển thị phía máy chủ và cải thiện trải nghiệm người dùng. Frontend đóng vai trò hiển thị dữ liệu, tiếp nhận tương tác của người dùng và giao tiếp với backend thông qua các API. Frontend được triển khai trên môi trường cục bộ tại cổng 3000.
 
-\subsection{Backend - Express.js}
-Backend được xây dựng trên nền tảng Express.js chạy trên Node.js runtime.
-
-\textbf{Các bước cài đặt:}
-\begin{enumerate}[noitemsep]
-    \item Clone repository và di chuyển vào thư mục backend
-    \item Cài đặt dependencies: npm install
-    \item Cấu hình kết nối database trong file .env
-    \item Chạy migration để tạo database schema
-    \item Khởi động server: npm run dev hoặc npm run dev
-\end{enumerate}
-
-\subsection{Database - Microsoft SQL Server}
-Hệ thống sử dụng Microsoft SQL Server LocalDB để lưu trữ dữ liệu.
+\textbf{Cài đặt:}
+\begin{itemize}[noitemsep]
+    \item Cài đặt các thư viện giao diện và cấu hình kết nối API đến backend.
+    \item Khởi động server phát triển và truy cập hệ thống tại localhost cổng 3000.
+\end{itemize}
+\subsection{Database}
+Hệ thống sử dụng Microsoft SQL Server LocalDB để lưu trữ dữ liệu nghiệp vụ, bao gồm thông tin người dùng, lịch sử tương tác, kết quả phân tích da và các dữ liệu liên quan đến thanh toán. Việc sử dụng LocalDB giúp thuận tiện cho quá trình phát triển và kiểm thử trên môi trường cục bộ.
 
 \textbf{Cấu hình:}
 \begin{itemize}[noitemsep]
     \item Server: localhost MSSQLLocalDB
-    \item Database name: GlowUpDB
-    \item Authentication: Windows Authentication
+    \item Database: GlowUpDB
+    \item Xác thực: Windows Authentication
 \end{itemize}
 
-\subsection{Frontend - Nuxt 3.4}
-Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js cho server-side rendering.
+\subsection{Vector Database}
+Qdrant được sử dụng để lưu trữ các vector embeddings và hỗ trợ tìm kiếm ngữ nghĩa, phục vụ cho cơ chế truy xuất tri thức trong hệ thống hỏi đáp dựa trên ngữ cảnh. Thành phần này giúp chatbot đưa ra câu trả lời chính xác hơn nhờ khai thác tri thức đã được lưu trữ.
 
-\textbf{Các bước cài đặt:}
+\textbf{Cài đặt:}
+\begin{itemize}[noitemsep]
+    \item Triển khai Qdrant bằng Docker để thuận tiện cho việc quản lý và mở rộng.
+    \item Truy cập Dashboard nhằm theo dõi trạng thái hoạt động và dữ liệu lưu trữ.
+\end{itemize}
+
+\textbf{Cấu hình:}
+\begin{itemize}[noitemsep]
+    \item REST API: localhost cổng 6333
+    \item Collection: glowup embeddings
+\end{itemize}
+
+\subsection{AI Chatbot}
+Hệ thống sử dụng Ollama để triển khai mô hình ngôn ngữ lớn cho chatbot tư vấn làm đẹp và chăm sóc da. Chatbot có khả năng tiếp nhận câu hỏi tự nhiên từ người dùng, kết hợp ngữ cảnh truy xuất từ Vector Database để tạo ra phản hồi phù hợp.
+
+\textbf{Cấu hình:}
+\begin{itemize}[noitemsep]
+    \item Model: llama3.
+    \item Context window: 4096 tokens.
+    \item Temperature: 0.7 nhằm cân bằng giữa tính sáng tạo và độ chính xác.
+\end{itemize}
+
+\subsection{AI Model CNN}
+Mô hình CNN được sử dụng để phân tích và phân loại các loại mụn trên da từ hình ảnh người dùng cung cấp. Kết quả dự đoán của mô hình được sử dụng làm đầu vào cho hệ thống tư vấn, giúp cá nhân hóa khuyến nghị chăm sóc da.
+
+\textbf{Thông tin chính:}
+\begin{itemize}[noitemsep]
+    \item Framework: PyTorch.
+    \item Kích thước ảnh đầu vào: 224 x 224.
+    \item Ngưỡng tin cậy: 0.5 để lọc các dự đoán có độ tin cậy thấp.
+\end{itemize}
+
+\subsection{Thanh toán VNPay}
+Hệ thống tích hợp cổng thanh toán VNPay trong môi trường sandbox nhằm kiểm thử quy trình thanh toán trực tuyến. Việc tích hợp cho phép mô phỏng luồng thanh toán thực tế trước khi triển khai lên môi trường chính thức.
+
+\textbf{Cài đặt:}
+\begin{itemize}[noitemsep]
+    \item Sử dụng Ngrok để công khai backend ra môi trường Internet phục vụ callback.
+    \item Cấu hình các URL phản hồi từ VNPay về hệ thống backend.
+\end{itemize}
+
+
+\subsection{Quy trình khởi động hệ thống}
 \begin{enumerate}[noitemsep]
-    \item Di chuyển vào thư mục frontend
-    \item Cài đặt dependencies: npm install
-    \item Cấu hình API endpoint trong file .env
-    \item Khởi động development server: npm run dev
-    \item Build production: npm run build
+    \item Khởi động các dịch vụ AI, bao gồm Ollama và Qdrant.
+    \item Khởi động AI Service cho mô hình CNN và backend server.
+    \item Khởi động Ngrok để phục vụ callback thanh toán và frontend.
 \end{enumerate}
+
+\subsection{Kiểm tra hệ thống}
+\begin{itemize}[noitemsep]
+    \item Kiểm tra chatbot phản hồi đúng ngữ cảnh câu hỏi.
+    \item Kiểm tra chức năng phân tích ảnh hoạt động chính xác.
+    \item Kiểm tra kết nối cơ sở dữ liệu và các API backend.
+\end{itemize}
 
 \subsection{Thiết kế hệ thống}
 
@@ -122,10 +168,10 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
 
     \item \textbf{Mô tả chức năng chi tiết các thành phần}:
     \begin{itemize}
-        \item \textbf{config/}: Quản lý các cấu hình quan trọng như kết nối cơ sở dữ liệu và biến môi trường. Việc tách biệt giúp việc thay đổi môi trường triển khai (Dev, Staging, Production) trở nên dễ dàng và an toàn.
+        \item \textbf{config/}: Quản lý các cấu hình quan trọng như kết nối cơ sở dữ liệu và biến môi trường. Việc tách biệt giúp việc thay đổi môi trường triển khai trở nên dễ dàng và an toàn.
         \item \textbf{controllers/}: Đóng vai trò lớp trung gian, nhận dữ liệu từ Client qua Route, gọi đến Service tương ứng và trả về kết quả theo định dạng JSON. Mỗi controller tương ứng với một nhóm chức năng (Người dùng, Sản phẩm, Đơn hàng...).
-        \item \textbf{services/}: Đây là "trái tim" của hệ thống, chứa các thuật toán và logic xử lý chính. Việc tách Service giúp tránh trùng lặp mã nguồn (DRY), dễ dàng viết Unit Test và có thể tái sử dụng ở nhiều nơi khác nhau.
-        \item \textbf{models/}: Ánh xạ các đối tượng nghiệp vụ vào cơ sở dữ liệu (MongoDB/PostgreSQL). Tầng này đảm bảo tính nhất quán và toàn vẹn dữ liệu trước khi được lưu trữ.
+        \item \textbf{services/}: Đây là "trái tim" của hệ thống, chứa các thuật toán và logic xử lý chính. Việc tách Service giúp tránh trùng lặp mã nguồn, dễ dàng viết Unit Test và có thể tái sử dụng ở nhiều nơi khác nhau.
+        \item \textbf{models/}: Ánh xạ các đối tượng nghiệp vụ vào cơ sở dữ liệu. Tầng này đảm bảo tính nhất quán và toàn vẹn dữ liệu trước khi được lưu trữ.
         \item \textbf{middlewares/}: Cung cấp các "chốt chặn" bảo mật, kiểm tra tính hợp lệ của Token JWT trước khi cho phép truy cập tài nguyên nhạy cảm và tập trung xử lý mọi lỗi phát sinh để trả về thông báo thống nhất.
         \item \textbf{uploads/}: Khu vực lưu trữ vật lý các dữ liệu đa phương tiện như ảnh đại diện, ảnh sản phẩm hoặc các tài liệu liên quan đến hỗ trợ khách hàng.
     \end{itemize}
@@ -145,10 +191,34 @@ Frontend được phát triển với Nuxt.js phiên bản 3.4, framework Vue.js
     \end{itemize}
 \end{itemize}
 
-\subsection{Khởi động Hệ thống}
-\begin{enumerate}[noitemsep]
-    \item Khởi động SQL Server
-    \item Khởi động Backend server (mặc định port 8081)
-    \item Khởi động Frontend server (mặc định port 3000)
-    \item Truy cập ứng dụng tại: http://localhost:3000
-\end{enumerate}
+\section{Kết quả huấn luyện mô hình CNN}
+
+Mô hình CNN được huấn luyện trên tập dữ liệu ảnh da với mụn trong 30 epoch. Kết quả huấn luyện được thể hiện qua hai biểu đồ chính: Training and Validation Loss và Training and Validation Accuracy.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{graphics/main/chapter3/training_history.png}
+    \caption{Kết quả huấn luyện mô hình CNN}
+    \label{fig:training_history}
+\end{figure}
+
+\textbf{Phân tích Loss (Độ mất mát):}
+
+Biểu đồ bên trái thể hiện sự thay đổi của loss qua các epoch. Train Loss (đường màu xanh) giảm đều đặn từ giá trị ban đầu khoảng 1.75 xuống còn khoảng 0.15 ở epoch 30, cho thấy mô hình học tập tốt trên tập huấn luyện. Validation Loss (đường màu cam) có xu hướng giảm nhưng dao động nhiều hơn, bắt đầu từ khoảng 1.6 và ổn định quanh mức 0.95 ở các epoch cuối. Sự chênh lệch giữa train loss và validation loss tăng dần theo thời gian, cho thấy có dấu hiệu overfitting nhẹ ở giai đoạn sau của quá trình huấn luyện.
+
+\textbf{Phân tích Accuracy (Độ chính xác):}
+
+Biểu đồ bên phải cho thấy sự cải thiện rõ rệt của độ chính xác. Train Accuracy (đường màu xanh) tăng từ khoảng 30\% lên đến 95\% ở epoch cuối, thể hiện khả năng học tập mạnh mẽ của mô hình trên tập huấn luyện. Validation Accuracy (đường màu cam) cũng có xu hướng tăng từ khoảng 42\% lên 75\% nhưng dao động đáng kể và có xu hướng ổn định ở mức 75-77\% từ epoch 15 trở đi. 
+
+\textbf{Đánh giá tổng quan:}
+
+Mô hình đạt train accuracy khoảng 95\% và validation accuracy khoảng 75\% sau 30 epoch huấn luyện. Khoảng cách giữa train accuracy và validation accuracy (khoảng 20\%) cho thấy mô hình có hiện tượng overfitting. Tuy nhiên, validation accuracy đạt 75\% là kết quả chấp nhận được cho bài toán phân loại mụn trên da. Để cải thiện hiệu suất, có thể áp dụng các kỹ thuật như data augmentation mạnh hơn, regularization (dropout, L2), hoặc early stopping để tránh overfitting.
+
+\textbf{Các chỉ số chính:}
+\begin{itemize}[noitemsep]
+    \item Train Loss cuối cùng: 0.15
+    \item Validation Loss cuối cùng: 0.95
+    \item Train Accuracy cuối cùng: 95\%
+    \item Validation Accuracy cuối cùng: 75\%
+    \item Số epoch huấn luyện: 30
+    \item Overfitting gap: 20\% (giữa train và validation accuracy)
+\end{itemize}
