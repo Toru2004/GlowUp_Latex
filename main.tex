@@ -219,6 +219,136 @@ Kaggle, ``Acne Dataset,'' Kaggle Datasets, 2024. [Online]. Available: \url{https
 Microsoft, ``Get started with SQL database projects,'' Microsoft Learn, 2024. [Online]. Available: \url{https://learn.microsoft.com/en-us/sql/tools/sql-database-projects/get-started?view=sql-server-ver17&pivots=sq1-visual-studio}. [Accessed: Dec. 20, 2025].
 
 \end{thebibliography}
+\appendix
+\chapter*{Phụ lục}
+\addcontentsline{toc}{chapter}{Phụ lục}
 
+\section*{Mã nguồn dự án}
+\addcontentsline{toc}{section}{Mã nguồn dự án}
+
+Toàn bộ mã nguồn của hệ thống được quản lý trên GitHub, bao gồm các repository sau:
+
+\textbf{Backend Repository:}
+\begin{itemize}[noitemsep]
+    \item URL: https://github.com/trongvu2003/GlowUp\_Web\_BE.git
+    \item Mô tả: Mã nguồn backend được phát triển bằng Express.js, xử lý API, tích hợp database, VNPay, Ollama chatbot và AI services
+    \item Công nghệ: Node.js, Express.js, Microsoft SQL Server, Qdrant
+\end{itemize}
+
+\textbf{Frontend Repository:}
+\begin{itemize}[noitemsep]
+    \item URL: https://github.com/Toru2004/GlowUp\_Web.git
+    \item Mô tả: Mã nguồn frontend được phát triển bằng Nuxt.js 3.4, cung cấp giao diện người dùng cho hệ thống
+    \item Công nghệ: Nuxt.js 3.4, Vue.js, TailwindCSS
+\end{itemize}
+
+\section*{Bộ dữ liệu}
+\addcontentsline{toc}{section}{Bộ dữ liệu}
+
+Dự án sử dụng bộ dữ liệu công khai để huấn luyện mô hình CNN phân loại mụn:
+
+\textbf{Acne vs Non-Acne Dataset:}
+\begin{itemize}[noitemsep]
+    \item Nguồn: Kaggle
+    \item URL: https://www.kaggle.com/datasets/captainsengupta2000/acne-vs-non-acne-5
+    \item Tác giả: Captain Sengupta
+    \item Mô tả: Bộ dữ liệu chứa hình ảnh da có mụn và không có mụn, được sử dụng để huấn luyện mô hình CNN phân loại
+    \item Số lượng ảnh: 10 000 ảnh
+    \item Định dạng: JPEG/PNG images
+\end{itemize}
+
+\section*{Công cụ và thư viện}
+\addcontentsline{toc}{section}{Công cụ và thư viện}
+
+Các công cụ và thư viện chính được sử dụng trong dự án:
+
+\textbf{Backend:}
+\begin{itemize}[noitemsep]
+    \item Express.js - Web framework
+    \item Sequelize - ORM cho SQL Server
+    \item MSSQL - Database driver
+    \item Qdrant Client - Vector database client
+    \item Ollama - LLM integration
+\end{itemize}
+
+\textbf{Frontend:}
+\begin{itemize}[noitemsep]
+    \item Nuxt.js 3.4 - Vue.js framework
+    \item TailwindCSS - UI styling
+    \item Axios - HTTP client
+    \item Pinia - State management
+\end{itemize}
+
+\textbf{AI/ML:}
+\begin{itemize}[noitemsep]
+    \item PyTorch - Deep learning framework
+    \item Flask/FastAPI - Python web framework
+    \item OpenCV - Image processing
+    \item NumPy - Numerical computing
+    \item Pillow - Image handling
+\end{itemize}
+
+\section*{Tài liệu tham khảo kỹ thuật}
+\addcontentsline{toc}{section}{Tài liệu tham khảo kỹ thuật}
+
+Các tài liệu và API documentation được sử dụng:
+
+\begin{itemize}[noitemsep]
+    \item Express.js Documentation: https://expressjs.com/
+    \item Nuxt.js Documentation: https://nuxt.com/
+    \item Qdrant Documentation: https://qdrant.tech/documentation/
+    \item Ollama Documentation: https://ollama.com/docs
+    \item VNPay API Documentation: Tài liệu sandbox từ VNPay
+    \item PyTorch Documentation: https://pytorch.org/docs/
+\end{itemize}
+
+\section*{Môi trường phát triển}
+\addcontentsline{toc}{section}{Môi trường phát triển}
+
+Thông tin về môi trường phát triển được sử dụng:
+
+\begin{itemize}[noitemsep]
+    \item IDE: Visual Studio Code
+    \item Version Control: Git
+    \item Package Manager: NPM (Node.js), pip (Python)
+    \item Container Platform: Docker Desktop
+    \item Testing Tool: Postman (API testing)
+    \item Database Management: Azure Data Studio, SQL Server Management Studio
+\end{itemize}
+
+\section*{Cấu trúc thư mục dự án}
+\addcontentsline{toc}{section}{Cấu trúc thư mục dự án}
+
+\textbf{Backend Structure:}
+\begin{itemize}[noitemsep]
+    \item /src - Source code chính
+    \item /config - Cấu hình hệ thống
+    \item /models - Database models
+    \item /controllers - Request handlers
+    \item /services - Business logic
+    \item /routes - API routes
+    \item /middleware - Middleware functions
+    \item /utils - Utility functions
+\end{itemize}
+
+\textbf{Frontend Structure:}
+\begin{itemize}[noitemsep]
+    \item /pages - Nuxt pages
+    \item /components - Vue components
+    \item /layouts - Layout templates
+    \item /composables - Composition functions
+    \item /stores - Pinia stores
+    \item /assets - Static assets
+    \item /public - Public files
+\end{itemize}
+
+\textbf{AI Model Structure:}
+\begin{itemize}[noitemsep]
+    \item /api - API endpoints
+    \item /config - Cấu hình hệ thống
+    \item /model - Trained models
+    \item /schemas - Data validation schemas
+    \item /services - Business logic và service layer
+\end{itemize}
 
 \end{document}
